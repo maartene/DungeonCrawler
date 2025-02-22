@@ -30,6 +30,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		DE2C0CC22D6A10B700D5648E /* docs */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = docs;
+			sourceTree = "<group>";
+		};
 		DEE593872D69F9420033210B /* DungeonCrawler */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = DungeonCrawler;
@@ -75,6 +80,7 @@
 		DEE5937C2D69F9420033210B = {
 			isa = PBXGroup;
 			children = (
+				DE2C0CC22D6A10B700D5648E /* docs */,
 				DEE593872D69F9420033210B /* DungeonCrawler */,
 				DEE593992D69F9430033210B /* DungeonCrawlerTests */,
 				DEE593A32D69F9430033210B /* DungeonCrawlerUITests */,
@@ -108,6 +114,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				DE2C0CC22D6A10B700D5648E /* docs */,
 				DEE593872D69F9420033210B /* DungeonCrawler */,
 			);
 			name = DungeonCrawler;

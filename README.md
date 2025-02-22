@@ -1,6 +1,6 @@
 # Dungeon Crawler
 
-This is the repository for the YouTube series where we create a Dungeon Crawler game using RealityKit.
+This is the repository for the YouTube series where we create a [Dungeon Crawler game using RealityKit](https://www.youtube.com/playlist?list=PLhUrOtMlcKDDjDeqlr1iU-lL16j90Vn_b)
 
 Topic we'll cover:
 

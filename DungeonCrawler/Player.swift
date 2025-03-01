@@ -9,6 +9,6 @@ final class Player {
     var position = Coordinate(x: 0, y: 0)
     
     func move(_ direction: Direction) {
-        position = Coordinate(x: 0, y: 1)
+        position = Coordinate(x: 0, y: position.y + 1)
     }
 }

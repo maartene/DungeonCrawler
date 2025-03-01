@@ -14,15 +14,6 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             GameView(world: world)
-            VStack {
-                Button("Move forward") {
-                    world.moveForward()
-                }
-                
-                Button("Move back") {
-                    world.moveBack()
-                }
-            }
         }
     }
 }

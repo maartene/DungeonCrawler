@@ -38,8 +38,7 @@ class WorldUpdateSystem: System {
     }
 
 
-    // Iterate through all entities containing a MyComponent.
     func update(context: SceneUpdateContext) {
-        cameraAnchor.position = world.playerPosition
+        //cameraAnchor.position = world.playerPosition
     }
 }

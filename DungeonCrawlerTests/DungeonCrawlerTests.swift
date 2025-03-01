@@ -13,6 +13,7 @@ import Testing
         (Direction.forward, Coordinate(x: 0, y: 1)),
         (Direction.backwards, Coordinate(x: 0, y: -1)),
         (Direction.left, Coordinate(x: -1, y: 0)),
+        (Direction.right, Coordinate(x: 1, y: 0)),
     ]) func movePlayerForward(testcase: (direction: Direction, expectedPosition: Coordinate)) {
         let player = Player()
         
@@ -29,4 +30,17 @@ import Testing
         
         #expect(player.position == Coordinate(x: 0, y: 2))
     }
+    
+    @Test("stays in the same position, when you move forward first, then right, then back and finally left") func moveInACircle() {
+        let player = Player()
+        
+        player.move(.forward)
+        player.move(.right)
+        player.move(.backwards)
+        player.move(.left)
+        
+        #expect(player.position == Coordinate(x: 0, y: 0))
+    }
+    
+    
 }

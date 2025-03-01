@@ -7,4 +7,5 @@
 
 enum Direction {
     case forward
+    case backwards
 }

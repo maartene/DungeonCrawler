@@ -10,7 +10,12 @@ struct Coordinate {
     var y: Int
     
     static func +=(coordinate: inout Coordinate, direction: Direction) {
-        coordinate.y += 1
+        if direction == .forward {
+            coordinate.y += 1
+        } else {
+            coordinate.y -= 1
+        }
+        
     }
 }
 

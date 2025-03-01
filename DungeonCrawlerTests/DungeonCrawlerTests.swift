@@ -12,6 +12,7 @@ import Testing
     @Test("get to the expected coordinate, when it moves in a specified direction", arguments: [
         (Direction.forward, Coordinate(x: 0, y: 1)),
         (Direction.backwards, Coordinate(x: 0, y: -1)),
+        (Direction.left, Coordinate(x: -1, y: 0)),
     ]) func movePlayerForward(testcase: (direction: Direction, expectedPosition: Coordinate)) {
         let player = Player()
         

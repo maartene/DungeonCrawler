@@ -15,6 +15,7 @@ struct Coordinate {
     
     static func +=(lhs: inout Coordinate, rhs: Coordinate) {
         lhs.y += rhs.y
+        lhs.x += rhs.x
     }
 }
 

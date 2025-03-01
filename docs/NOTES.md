@@ -19,4 +19,8 @@
     - ⚠️ Rotation
 
 ## 🍅 Pomodoro 3 - moving around (all four directions)
-- ⚠️ Moving forward
+- ✅ Moving forward, backwards, left and right
+- ✅ Moving in a direction multiple times
+- ✅ Refactored the code to be nice and clean
+
+## 🍅 Pomodoro 4 - rotation first

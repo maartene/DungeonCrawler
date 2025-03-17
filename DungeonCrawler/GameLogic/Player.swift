@@ -14,6 +14,10 @@ final class Player {
     }
     
     func turnClockwise() {
-        heading = .east
+        if heading != .north {
+            heading = .west
+        } else {
+            heading = .east
+        }
     }
 }

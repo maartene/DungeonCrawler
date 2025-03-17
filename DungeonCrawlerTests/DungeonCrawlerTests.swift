@@ -59,4 +59,14 @@ import Testing
         
         #expect(player.heading == .east)
     }
+    
+    @Test("face west when it turns clockwise three times") func turnClockwiseThreeTimes() {
+        let player = Player()
+        
+        player.turnClockwise()
+        player.turnClockwise()
+        player.turnClockwise()
+        
+        #expect(player.heading == .west)
+    }
 }

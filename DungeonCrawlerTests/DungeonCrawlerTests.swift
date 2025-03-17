@@ -69,4 +69,12 @@ import Testing
         
         #expect(player.heading == .west)
     }
+    
+    @Test("face west when it turns counter clockwise once") func turnCounterClockwise() {
+        let player = Player()
+        
+        player.turnCounterClockwise()
+        
+        #expect(player.heading == .west)
+    }
 }

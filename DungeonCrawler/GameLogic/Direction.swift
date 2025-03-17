@@ -35,4 +35,13 @@ enum CompassDirection {
         case .west: return .north
         }
     }
+    
+    var rotatedCounterClockwise: CompassDirection {
+        switch self {
+        case .north: return .west
+        case .east: return .north
+        case .south: return .east
+        case .west: return .south
+        }
+    }
 }

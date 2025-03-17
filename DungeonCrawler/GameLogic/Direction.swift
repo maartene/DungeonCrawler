@@ -11,13 +11,26 @@ enum Direction {
     case left
     case right
     
-    var toCoordinate: Coordinate {
-        switch self {
-        case .forward: return Coordinate(x: 0, y: 1)
-        case .backwards:  return Coordinate(x: 0, y: -1)
-        case .left:  return Coordinate(x: -1, y: 0)
-        case .right:  return Coordinate(x: 1, y: 0)
+    func toCompassDirection(facing: CompassDirection = .north) -> CompassDirection {
+        var tempDirection: CompassDirection = switch self {
+        case .forward: .north
+        case .right: .east
+        case .backwards: .south
+        case .left: .west
         }
+        
+        let numberOfQuarterTurns = switch facing {
+        case .north: 0
+        case .east:  1
+        case .south: 2
+        case .west:  3
+        }
+        
+        for _ in 0 ..< numberOfQuarterTurns {
+            tempDirection = tempDirection.rotatedClockwise
+        }
+        
+        return tempDirection
     }
 }
 
@@ -42,6 +55,15 @@ enum CompassDirection {
         case .east: return .north
         case .south: return .east
         case .west: return .south
+        }
+    }
+    
+    var toCoordinate: Coordinate {
+        switch self {
+        case .north: return Coordinate(x: 0, y: 1)
+        case .south:  return Coordinate(x: 0, y: -1)
+        case .west:  return Coordinate(x: -1, y: 0)
+        case .east:  return Coordinate(x: 1, y: 0)
         }
     }
 }

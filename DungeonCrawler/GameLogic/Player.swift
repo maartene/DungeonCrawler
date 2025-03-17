@@ -10,11 +10,7 @@ final class Player {
     private(set) var heading = CompassDirection.north
     
     func move(_ direction: Direction) {
-        if heading != .north {
-            position = Coordinate(x: -1, y: 0)
-        } else {
-            position += direction
-        }
+        position += direction.toCompassDirection(facing: heading).toCoordinate
     }
     
     func turnClockwise() {

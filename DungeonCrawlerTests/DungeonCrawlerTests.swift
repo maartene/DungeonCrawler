@@ -46,6 +46,12 @@ import Testing
 }
 
 @Suite("Player rotation should") struct PlayerRotationTests {
+    @Test("face north when the new player is created") func newPlayerFacesNorth() {
+        let player = Player()
+        
+        #expect(player.heading == .north)
+    }
+    
     @Test("face east when it turns clockwise") func turnClockwiseOnce() {
         let player = Player()
         

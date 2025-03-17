@@ -7,8 +7,13 @@
 
 final class Player {
     private(set) var position = Coordinate(x: 0, y: 0)
+    private(set) var heading = CompassDirection.east
     
     func move(_ direction: Direction) {
         position += direction
+    }
+    
+    func turnClockwise() {
+        
     }
 }

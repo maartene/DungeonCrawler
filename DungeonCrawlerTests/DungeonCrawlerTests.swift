@@ -42,6 +42,14 @@ import Testing
         #expect(player.position == Coordinate(x: 0, y: 0))
     }
     
+    @Test("get to coordinate(-1,0) when it moves forward while facing west") func movePlayerWhileFacingWest() {
+        let player = Player()
+        player.turnCounterClockwise()
+        
+        player.move(.forward)
+        
+        #expect(player.position == Coordinate(x: -1, y: 0))
+    }
     
 }
 

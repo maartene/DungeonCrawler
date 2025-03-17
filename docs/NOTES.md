@@ -24,3 +24,5 @@
 - ✅ Refactored the code to be nice and clean
 
 ## 🍅 Pomodoro 4 - rotation first
+- ✅ Fixed tech debt: folder structure and encapsulation for `Player`.`position`
+- ✅ Rotate clockwise and counter clockwise

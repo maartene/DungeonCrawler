@@ -1,7 +1,7 @@
 #  Tech Debt
 
 ## ⚠️ TODO
-
+- `Direction.toCompassDirection` can be cleaned up. Its long and its smelly.
 
 ## ✅ DONE
 - World code should be test driven, it is not right now

@@ -2,7 +2,7 @@
 
 ## Player movement
 * move in all four cardinal directions ✅
-* rotate around 
+* rotate around 🚧
 * take facing into account when moving around
 * don't move through walls
 

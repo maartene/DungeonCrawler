@@ -26,3 +26,6 @@
 ## 🍅 Pomodoro 4 - rotation first
 - ✅ Fixed tech debt: folder structure and encapsulation for `Player`.`position`
 - ✅ Rotate clockwise and counter clockwise
+- ✅ Move while taking facing into account
+
+## 🍅 Pomodoro 5 - gain more confidence about moving while taking facing into account

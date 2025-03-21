@@ -11,13 +11,17 @@ enum Direction {
     case left
     case right
     
-    func toCompassDirection(facing: CompassDirection = .north) -> CompassDirection {
-        var tempDirection: CompassDirection = switch self {
+    private var toCompassDirectionWhenFacingNorth: CompassDirection {
+        switch self {
         case .forward: .north
         case .right: .east
         case .backwards: .south
         case .left: .west
         }
+    }
+    
+    func toCompassDirection(facing: CompassDirection = .north) -> CompassDirection {
+        var tempDirection: CompassDirection = toCompassDirectionWhenFacingNorth
         
         let numberOfQuarterTurns = facing.numberOfQuarterTurnsToNorth
         

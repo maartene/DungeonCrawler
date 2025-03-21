@@ -29,3 +29,4 @@
 - ✅ Move while taking facing into account
 
 ## 🍅 Pomodoro 5 - gain more confidence about moving while taking facing into account
+- ✅ write enough tests to gain confidence in `toCompassDirection`

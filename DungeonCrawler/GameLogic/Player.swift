@@ -6,8 +6,13 @@
 //
 
 final class Player {
-    private(set) var position = Coordinate(x: 0, y: 0)
-    private(set) var heading = CompassDirection.north
+    private(set) var position: Coordinate
+    private(set) var heading: CompassDirection
+    
+    init(position: Coordinate = Coordinate(x: 0, y: 0), heading: CompassDirection = CompassDirection.north) {
+        self.position = position
+        self.heading = heading
+    }
     
     func move(_ direction: Direction) {
         position += direction.toCompassDirection(facing: heading).toCoordinate

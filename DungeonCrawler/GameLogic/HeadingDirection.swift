@@ -5,7 +5,7 @@
 //  Created by Maarten Engels on 01/03/2025.
 //
 
-enum Direction {
+enum HeadingDirection {
     case forward
     case backwards
     case left
@@ -21,7 +21,7 @@ enum Direction {
     }
     
     func toCompassDirection(facing: CompassDirection = .north) -> CompassDirection {
-        let numberOfQuarterTurns = facing.numberOfQuarterTurnsToNorth        
+        let numberOfQuarterTurns = facing.numberOfQuarterTurnsToNorth
         return toCompassDirectionWhenFacingNorth.rotatedClockwise(numberOfQuarterTurns)
     }
 }

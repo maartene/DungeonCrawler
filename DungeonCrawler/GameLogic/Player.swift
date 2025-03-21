@@ -14,7 +14,7 @@ final class Player {
         self.heading = heading
     }
     
-    func move(_ direction: HeadingDirection) {
+    func move(_ direction: MovementDirection) {
         position += direction.toCompassDirection(facing: heading).toCoordinate
     }
     

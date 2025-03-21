@@ -10,11 +10,11 @@ import Testing
 
 @Suite("Player movement should") struct PlayerMovementTests {
     @Test("get to the expected coordinate, when it moves in a specified direction", arguments: [
-        (HeadingDirection.forward, Coordinate(x: 0, y: 1)),
-        (HeadingDirection.backwards, Coordinate(x: 0, y: -1)),
-        (HeadingDirection.left, Coordinate(x: -1, y: 0)),
-        (HeadingDirection.right, Coordinate(x: 1, y: 0)),
-    ]) func movePlayerForward(testcase: (direction: HeadingDirection, expectedPosition: Coordinate)) {
+        (MovementDirection.forward, Coordinate(x: 0, y: 1)),
+        (MovementDirection.backwards, Coordinate(x: 0, y: -1)),
+        (MovementDirection.left, Coordinate(x: -1, y: 0)),
+        (MovementDirection.right, Coordinate(x: 1, y: 0)),
+    ]) func movePlayerForward(testcase: (direction: MovementDirection, expectedPosition: Coordinate)) {
         let player = Player()
         
         player.move(testcase.direction)
@@ -43,12 +43,12 @@ import Testing
     }
     
     @Test("get to the expected coordinate when it moves in the designated direction while heading a certain way", arguments: [
-        (Coordinate(x: 0, y: 0), CompassDirection.west, HeadingDirection.forward, Coordinate(x: -1, y: 0)),
-        (Coordinate(x: -4, y: 5), CompassDirection.south, HeadingDirection.backwards, Coordinate(x: -4, y: 6)),
-        (Coordinate(x: 11, y: -4), CompassDirection.east, HeadingDirection.right, Coordinate(x: 11, y: -5)),
-        (Coordinate(x: 24, y: 72), CompassDirection.north, HeadingDirection.left, Coordinate(x: 23, y: 72)),
-        (Coordinate(x: 24, y: 72), CompassDirection.south, HeadingDirection.left, Coordinate(x: 25, y: 72)),
-    ]) func movementTakesHeadingIntoAccount(testcase: (startPosition: Coordinate, heading: CompassDirection, movementDirection: HeadingDirection, expectedPosition: Coordinate)) {
+        (Coordinate(x: 0, y: 0), CompassDirection.west, MovementDirection.forward, Coordinate(x: -1, y: 0)),
+        (Coordinate(x: -4, y: 5), CompassDirection.south, MovementDirection.backwards, Coordinate(x: -4, y: 6)),
+        (Coordinate(x: 11, y: -4), CompassDirection.east, MovementDirection.right, Coordinate(x: 11, y: -5)),
+        (Coordinate(x: 24, y: 72), CompassDirection.north, MovementDirection.left, Coordinate(x: 23, y: 72)),
+        (Coordinate(x: 24, y: 72), CompassDirection.south, MovementDirection.left, Coordinate(x: 25, y: 72)),
+    ]) func movementTakesHeadingIntoAccount(testcase: (startPosition: Coordinate, heading: CompassDirection, movementDirection: MovementDirection, expectedPosition: Coordinate)) {
         let player = Player(position: testcase.startPosition, heading: testcase.heading)
         
         player.move(testcase.movementDirection)

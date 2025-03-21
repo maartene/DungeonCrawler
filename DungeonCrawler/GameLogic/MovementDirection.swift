@@ -5,7 +5,7 @@
 //  Created by Maarten Engels on 01/03/2025.
 //
 
-enum HeadingDirection {
+enum MovementDirection {
     case forward
     case backwards
     case left

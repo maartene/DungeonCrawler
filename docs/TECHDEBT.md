@@ -8,3 +8,4 @@
 - Cleanup the mess that the folder structure is
 - Player `position` breaks encapsulation as its changeable from outside of the class.
 - `Direction.toCompassDirection` can be cleaned up. Its long and its smelly.
+- Rename `HeadingDirection` to `MovementDirection`

@@ -21,13 +21,11 @@ enum Direction {
     }
     
     func toCompassDirection(facing: CompassDirection = .north) -> CompassDirection {
-        var tempDirection: CompassDirection = toCompassDirectionWhenFacingNorth
+        let tempDirection: CompassDirection = toCompassDirectionWhenFacingNorth
         
         let numberOfQuarterTurns = facing.numberOfQuarterTurnsToNorth
         
-        tempDirection = tempDirection.rotatedClockwise(numberOfQuarterTurns)
-        
-        return tempDirection
+        return tempDirection.rotatedClockwise(numberOfQuarterTurns)
     }
 }
 

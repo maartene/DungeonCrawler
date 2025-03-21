@@ -19,12 +19,7 @@ enum Direction {
         case .left: .west
         }
         
-        let numberOfQuarterTurns = switch facing {
-        case .north: 0
-        case .east:  1
-        case .south: 2
-        case .west:  3
-        }
+        let numberOfQuarterTurns = facing.numberOfQuarterTurnsToNorth
         
         tempDirection = tempDirection.rotatedClockwise(numberOfQuarterTurns)
         
@@ -37,6 +32,15 @@ enum CompassDirection {
     case east
     case south
     case west
+    
+    var numberOfQuarterTurnsToNorth: Int {
+        switch self {
+        case .north: 0
+        case .east:  1
+        case .south: 2
+        case .west:  3
+        }
+    }
     
     func rotatedClockwise(_ times: Int = 0) -> CompassDirection {
         var rotatedDirection = self

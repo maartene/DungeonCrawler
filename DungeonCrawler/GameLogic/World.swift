@@ -8,5 +8,5 @@
 import simd
 
 class World {
-    
+    let player = Player()
 }

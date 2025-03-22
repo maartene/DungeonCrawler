@@ -39,6 +39,28 @@ class WorldUpdateSystem: System {
 
 
     func update(context: SceneUpdateContext) {
-        //cameraAnchor.position = world.playerPosition
+        cameraAnchor.position = world.player.position.toSIMD3
+        cameraAnchor.transform.rotation = simd_quatf(angle: world.player.heading.toAngleAroundYAxis, axis: [0, 1, 0])
+    }
+}
+
+extension Coordinate {
+    var toSIMD3: SIMD3<Float> {
+        .init(Float(x), 0, -Float(y))
+    }
+}
+
+extension CompassDirection {
+    var toAngleAroundYAxis: Float {
+        switch self {
+        case .north:
+            return 0
+        case .east:
+            return .pi * 1.5
+        case .south:
+            return .pi
+        case .west:
+            return .pi * 0.5
+        }
     }
 }

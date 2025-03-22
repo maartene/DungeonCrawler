@@ -31,3 +31,9 @@
 ## 🍅 Pomodoro 5 - gain more confidence about moving while taking facing into account
 - ✅ write enough tests to gain confidence in `toCompassDirection`
 - ✅ Refactored the `toCompassDirection` function
+
+## 🍅 Pomodoro 6 - visualize movement and rotation in the RealityKit view
+- ✅ Create UI to control player
+- ✅ Update view as player moves and rotates
+- ✅ Keyboard shortcuts
+- ✅ Extra colors for the walls, so depth is more explicit

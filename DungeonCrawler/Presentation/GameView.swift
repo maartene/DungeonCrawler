@@ -27,7 +27,8 @@ struct GameView: NSViewRepresentable {
     }
     
     private func createCube(worldPosition: SIMD3<Float>) -> AnchorEntity {
-        var cubeMaterial = SimpleMaterial(color: .blue, isMetallic: true)
+        let color = NSColor(hue: CGFloat.random(in: 0...1), saturation: 1, brightness: 1, alpha: 1)
+        var cubeMaterial = SimpleMaterial(color: color, isMetallic: true)
         cubeMaterial.metallic = 0.2
         cubeMaterial.roughness = 0.7
         let cubeEntity = Entity(components: [ModelComponent(mesh: .generateBox(size: 1), materials: [cubeMaterial])])

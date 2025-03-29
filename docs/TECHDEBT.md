@@ -1,6 +1,7 @@
 #  Tech Debt
 
 ## ⚠️ TODO
+- Inspecting the map for features
 - Cleanup initializer for `Map`
 - Hard coded starting position for player in `World`
 - Feature envy and/or message chains in `ContentView` and `GameView` where the world's internal properties get accessed directly.

@@ -41,3 +41,7 @@
 ## 🍅 Pomodoro 7 - limit player movement to floor (i.e. cannot move through walls)
 - ✅ Limit player movement so they cannot move through walls
 - ✅ Remove redundant `rotatedClockwise` computed properties and functions
+
+## 🍅 Pomodoro 8 - start working on moving up and down floors
+- ✅ refactored the conversion from game logic coordinate and direction space to 3D coordinates and rotations
+- ✅ move up a floor when standing on a stairs leading up.

@@ -1,7 +1,10 @@
 #  Tech Debt
 
 ## ⚠️ TODO
-- Cleanup initializer for Map
+- missing tests for `toAngleAroundAxis` and `toSIMD3`
+- Cleanup initializer for `Map`
+- Hard coded starting position for player in `World`
+- Feature envy and/or message chains in `ContentView` and `GameView` where the world's internal properties get accessed directly.
 
 ## ✅ DONE
 - World code should be test driven, it is not right now

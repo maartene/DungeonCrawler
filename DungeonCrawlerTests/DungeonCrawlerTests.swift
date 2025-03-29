@@ -113,11 +113,24 @@ import Testing
     
     @Test("when a player moves up a staircase, the floornumber should increase by 1") func playerMovesUpStairs() {
         let player = Player()
+        let map = Map([
+            ["<"]
+        ])
         
-        player.ascendStairs()
+        player.ascendStairs(in: map)
         
         #expect(player.currentFloor == 1)
     }
     
-    
+    @Test("when a player is not on a staircase leading up, and the player tries to ascend, the floornumber does not change") func playerCannotMoveUpStairsIfNotOnStairs() {
+        let player = Player()
+        
+        let map = Map([
+            ["."]
+        ])
+        
+        player.ascendStairs(in: map)
+        
+        #expect(player.currentFloor == 0)
+    }
 }

@@ -9,4 +9,5 @@ import simd
 
 class World {
     let player = Player()
+    let map = Map()
 }

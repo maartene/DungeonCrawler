@@ -8,7 +8,7 @@
 import Testing
 @testable import DungeonCrawler
 
-@Suite("Player movement should") struct PlayerMovementTests {
+@Suite("Player movement should") struct PlayerMovementTests {    
     @Test("get to the expected coordinate, when it moves in a specified direction", arguments: [
         (MovementDirection.forward, Coordinate(x: 0, y: 1)),
         (MovementDirection.backwards, Coordinate(x: 0, y: -1)),
@@ -17,7 +17,7 @@ import Testing
     ]) func movePlayerForward(testcase: (direction: MovementDirection, expectedPosition: Coordinate)) {
         let player = Player()
         
-        player.move(testcase.direction)
+        player.move(testcase.direction, in: Map())
         
         #expect(player.position == testcase.expectedPosition)
     }
@@ -25,8 +25,8 @@ import Testing
     @Test("get to coordinate (0,2) when it moves forward twice") func movePlayerForwardTwice() {
         let player = Player()
         
-        player.move(.forward)
-        player.move(.forward)
+        player.move(.forward, in: Map())
+        player.move(.forward, in: Map())
         
         #expect(player.position == Coordinate(x: 0, y: 2))
     }
@@ -34,10 +34,10 @@ import Testing
     @Test("stays in the same position, when you move forward first, then right, then back and finally left") func moveInACircle() {
         let player = Player()
         
-        player.move(.forward)
-        player.move(.right)
-        player.move(.backwards)
-        player.move(.left)
+        player.move(.forward, in: Map())
+        player.move(.right, in: Map())
+        player.move(.backwards, in: Map())
+        player.move(.left, in: Map())
         
         #expect(player.position == Coordinate(x: 0, y: 0))
     }
@@ -51,11 +51,23 @@ import Testing
     ]) func movementTakesHeadingIntoAccount(testcase: (startPosition: Coordinate, heading: CompassDirection, movementDirection: MovementDirection, expectedPosition: Coordinate)) {
         let player = Player(position: testcase.startPosition, heading: testcase.heading)
         
-        player.move(testcase.movementDirection)
+        player.move(testcase.movementDirection, in: Map())
         
         #expect(player.position == testcase.expectedPosition)
     }
     
+    @Test("not move through walls") func cannotMoveThroughWalls() {
+        let map = Map([
+            ["#","#","#","#"],
+            ["#",".",".","#"],
+            ["#","#","#","#"],
+        ])
+        let player = Player(position: Coordinate(x: 0, y: 1))
+        
+        player.move(.forward, in: map)
+        
+        #expect(player.position == Coordinate(x: 0, y: 1))
+    }
 }
 
 @Suite("Player rotation should") struct PlayerRotationTests {

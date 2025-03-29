@@ -20,7 +20,7 @@ struct ContentView: View {
                         world.player.turnCounterClockwise()
                     }.keyboardShortcut("q", modifiers: [])
                     Button("Forward") {
-                        world.player.move(.forward)
+                        world.player.move(.forward, in: world.map)
                     }.keyboardShortcut("w", modifiers: [])
                     Button("Turn CW") {
                         world.player.turnClockwise()
@@ -29,13 +29,13 @@ struct ContentView: View {
                 
                 HStack {
                     Button("Left") {
-                        world.player.move(.left)
+                        world.player.move(.left, in: world.map)
                     }.keyboardShortcut("a", modifiers: [])
                     Button("Back") {
-                        world.player.move(.backwards)
+                        world.player.move(.backwards, in: world.map)
                     }.keyboardShortcut("s", modifiers: [])
                     Button("Right") {
-                        world.player.move(.right)
+                        world.player.move(.right, in: world.map)
                     }.keyboardShortcut("d", modifiers: [])
                     
                 }

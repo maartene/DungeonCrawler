@@ -14,8 +14,14 @@ final class Player {
         self.heading = heading
     }
     
-    func move(_ direction: MovementDirection) {
-        position += direction.toCompassDirection(facing: heading).toCoordinate
+    func move(_ direction: MovementDirection, in map: Map) {
+        let newPosition = position + direction.toCompassDirection(facing: heading).toCoordinate
+        
+        guard map.hasWall(at: newPosition) == false else {
+            return
+        }
+        
+        position = newPosition
     }
     
     func turnClockwise() {

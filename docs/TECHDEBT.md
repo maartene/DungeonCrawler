@@ -2,6 +2,7 @@
 
 ## ⚠️ TODO
 - CompassDirection has both a `rotatedClockwise()` function as well as a `rotatedClockwise` computed variable.
+- Cleanup initializer for Map
 
 ## ✅ DONE
 - World code should be test driven, it is not right now

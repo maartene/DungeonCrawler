@@ -37,3 +37,7 @@
 - ✅ Update view as player moves and rotates
 - ✅ Keyboard shortcuts
 - ✅ Extra colors for the walls, so depth is more explicit
+
+## 🍅 Pomodoro 7 - limit player movement to floor (i.e. cannot move through walls)
+- ✅ Limit player movement so they cannot move through walls
+- ✅ Remove redundant `rotatedClockwise` computed properties and functions

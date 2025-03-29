@@ -103,3 +103,13 @@ import Testing
         #expect(player.heading == .west)
     }
 }
+
+@Suite("When moving from one floor to another") struct MultipleLevelTests {
+    @Test("when a player moves up a staircase, the floornumber should increase by 1") func playerMovesUpStairs() {
+        let player = Player()
+        
+        player.ascendStairs()
+        
+        #expect(player.currentFloor == 1)
+    }
+}

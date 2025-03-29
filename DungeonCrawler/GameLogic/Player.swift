@@ -9,6 +9,8 @@ final class Player {
     private(set) var position: Coordinate
     private(set) var heading: CompassDirection
     
+    let currentFloor = 1
+    
     init(position: Coordinate = Coordinate(x: 0, y: 0), heading: CompassDirection = CompassDirection.north) {
         self.position = position
         self.heading = heading
@@ -30,5 +32,9 @@ final class Player {
     
     func turnCounterClockwise() {
         heading = heading.rotatedCounterClockwise()
+    }
+    
+    func ascendStairs() {
+        
     }
 }

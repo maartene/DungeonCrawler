@@ -54,22 +54,13 @@ struct GameView: NSViewRepresentable {
     }
     
     private func setupView(_ arView: ARView) {
-        let cubePositions: [SIMD3<Float>] = [
-            [-1,0,1],
-            [1,0,1],
-            [-1,0,0],
-            [1,0,0],
-            [-1,0,-1],
-            [1,0,-1],
-            [-1,0,-2],
-            [1,0,-2],
-            [-1,0,-4],
-            [0,0,-4],
-            [1,0,-4],
-        ]
-        
-        for cubePosition in cubePositions {
-            arView.scene.addAnchor(createCube(worldPosition: cubePosition))
+        for row in world.map.minX ... world.map.maxX {
+            for col in world.map.minX ... world.map.maxX {
+                let coordinate = Coordinate(x: col, y: row)
+                if world.map.hasWall(at: coordinate) {
+                    arView.scene.addAnchor(createCube(worldPosition: coordinate.toSIMD3))
+                }
+            }
         }
         
         guard let skyboxResource = try? EnvironmentResource.load(named: "ambientLight") else {

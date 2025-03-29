@@ -8,6 +8,13 @@
 import simd
 
 class World {
-    let player = Player()
-    let map = Map()
+    let player = Player(position: Coordinate(x: 1, y: 1))
+    let map = Map([
+        ["#","#","#","#","#","#"],
+        ["#",".",".",".",".","#"],
+        ["#",".","#",".",".","#"],
+        ["#",".",".","#",".","#"],
+        ["#",".",".",".",".","#"],
+        ["#","#","#","#","#","#"],
+    ])
 }

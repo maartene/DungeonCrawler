@@ -1,7 +1,6 @@
 #  Tech Debt
 
 ## ⚠️ TODO
-- CompassDirection has both a `rotatedClockwise()` function as well as a `rotatedClockwise` computed variable.
 - Cleanup initializer for Map
 
 ## ✅ DONE
@@ -10,3 +9,4 @@
 - Player `position` breaks encapsulation as its changeable from outside of the class.
 - `Direction.toCompassDirection` can be cleaned up. Its long and its smelly.
 - Rename `HeadingDirection` to `MovementDirection`
+- CompassDirection has both a `rotatedClockwise()` function as well as a `rotatedClockwise` computed variable.

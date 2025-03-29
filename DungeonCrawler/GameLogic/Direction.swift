@@ -41,32 +41,38 @@ enum CompassDirection {
         }
     }
     
-    func rotatedClockwise(_ times: Int = 0) -> CompassDirection {
+    func rotatedClockwise(_ times: Int = 1) -> CompassDirection {
+        let rotatedClockwiseDirections: [CompassDirection: CompassDirection] = [
+            .north: .east,
+            .east: .south,
+            .south: .west,
+            .west: .north
+        ]
+        
         var rotatedDirection = self
         
         for _ in 0 ..< times {
-            rotatedDirection = rotatedDirection.rotatedClockwise
+            rotatedDirection = rotatedClockwiseDirections[rotatedDirection]!
         }
         
         return rotatedDirection
     }
     
-    var rotatedClockwise: CompassDirection {
-        switch self {
-        case .north: return .east
-        case .east: return .south
-        case .south: return .west
-        case .west: return .north
+    func rotatedCounterClockwise(_ times: Int = 1) -> CompassDirection {
+        let rotatedCounterClockwiseDirections: [CompassDirection: CompassDirection] = [
+            .north: .west,
+            .east: .north,
+            .south: .east,
+            .west: .south
+        ]
+        
+        var rotatedDirection = self
+        
+        for _ in 0 ..< times {
+            rotatedDirection = rotatedCounterClockwiseDirections[rotatedDirection]!
         }
-    }
-    
-    var rotatedCounterClockwise: CompassDirection {
-        switch self {
-        case .north: return .west
-        case .east: return .north
-        case .south: return .east
-        case .west: return .south
-        }
+        
+        return rotatedDirection
     }
     
     var toCoordinate: Coordinate {

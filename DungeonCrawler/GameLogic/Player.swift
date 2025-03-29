@@ -25,10 +25,10 @@ final class Player {
     }
     
     func turnClockwise() {
-        heading = heading.rotatedClockwise
+        heading = heading.rotatedClockwise()
     }
     
     func turnCounterClockwise() {
-        heading = heading.rotatedCounterClockwise
+        heading = heading.rotatedCounterClockwise()
     }
 }

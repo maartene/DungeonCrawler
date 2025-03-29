@@ -83,4 +83,13 @@ enum CompassDirection {
         case .east:  return Coordinate(x: 1, y: 0)
         }
     }
+    
+    static var randomValue: CompassDirection {
+        switch Int.random(in: 0 ..< 4) {
+        case 0: return .north
+        case 1: return .south
+        case 2: return .west
+        default: return .east
+        }
+    }
 }

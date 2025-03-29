@@ -1,7 +1,6 @@
 #  Tech Debt
 
 ## ⚠️ TODO
-- missing tests for `toAngleAroundAxis` and `toSIMD3`
 - Cleanup initializer for `Map`
 - Hard coded starting position for player in `World`
 - Feature envy and/or message chains in `ContentView` and `GameView` where the world's internal properties get accessed directly.
@@ -13,3 +12,4 @@
 - `Direction.toCompassDirection` can be cleaned up. Its long and its smelly.
 - Rename `HeadingDirection` to `MovementDirection`
 - CompassDirection has both a `rotatedClockwise()` function as well as a `rotatedClockwise` computed variable.
+- missing tests for `toAngleAroundAxis` and `toSIMD3`

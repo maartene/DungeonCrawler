@@ -9,7 +9,7 @@ final class Player {
     private(set) var position: Coordinate
     private(set) var heading: CompassDirection
     
-    let currentFloor = 1
+    var currentFloor = 0
     
     init(position: Coordinate = Coordinate(x: 0, y: 0), heading: CompassDirection = CompassDirection.north) {
         self.position = position
@@ -35,6 +35,6 @@ final class Player {
     }
     
     func ascendStairs() {
-        
+        currentFloor += 1
     }
 }

@@ -105,6 +105,12 @@ import Testing
 }
 
 @Suite("When moving from one floor to another") struct MultipleLevelTests {
+    @Test("a new player starts at floornumber 0") func newPlayerStartsAtFloor0() {
+        let player = Player()
+        
+        #expect(player.currentFloor == 0)
+    }
+    
     @Test("when a player moves up a staircase, the floornumber should increase by 1") func playerMovesUpStairs() {
         let player = Player()
         
@@ -112,4 +118,6 @@ import Testing
         
         #expect(player.currentFloor == 1)
     }
+    
+    
 }

@@ -24,25 +24,25 @@ struct ContentView: View {
             VStack {
                 HStack {
                     Button("Turn CCW") {
-                        world.turnCounterClockwise()
+                        world.turnPartyCounterClockwise()
                     }.keyboardShortcut("q", modifiers: [])
                     Button("Forward") {
-                        world.move(.forward)
+                        world.moveParty(.forward)
                     }.keyboardShortcut("w", modifiers: [])
                     Button("Turn CW") {
-                        world.turnClockwise()
+                        world.turnPartyClockwise()
                     }.keyboardShortcut("e", modifiers: [])
                 }
                 
                 HStack {
                     Button("Left") {
-                        world.move(.left)
+                        world.moveParty(.left)
                     }.keyboardShortcut("a", modifiers: [])
                     Button("Back") {
-                        world.move(.backwards)
+                        world.moveParty(.backwards)
                     }.keyboardShortcut("s", modifiers: [])
                     Button("Right") {
-                        world.move(.right)
+                        world.moveParty(.right)
                     }.keyboardShortcut("d", modifiers: [])
                     
                 }

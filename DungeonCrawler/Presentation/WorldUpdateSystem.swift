@@ -39,7 +39,7 @@ class WorldUpdateSystem: System {
 
 
     func update(context: SceneUpdateContext) {
-        cameraAnchor.position = world.position.toSIMD3
-        cameraAnchor.transform.rotation = world.heading.toFloatQuaternion
+        cameraAnchor.position = world.partyPosition.toSIMD3
+        cameraAnchor.transform.rotation = world.partyHeading.toFloatQuaternion
     }
 }

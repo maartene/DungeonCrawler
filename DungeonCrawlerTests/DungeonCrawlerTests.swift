@@ -17,29 +17,29 @@ import Testing
     ]) func movePartyForward(testcase: (direction: MovementDirection, expectedPosition: Coordinate)) {
         let world = World(map: Map())
         
-        world.move(testcase.direction)
+        world.moveParty(testcase.direction)
         
-        #expect(world.position == testcase.expectedPosition)
+        #expect(world.partyPosition == testcase.expectedPosition)
     }
     
     @Test("get to coordinate (0,2) when it moves forward twice") func movePlayerForwardTwice() {
         let world = World(map: Map())
         
-        world.move(.forward)
-        world.move(.forward)
+        world.moveParty(.forward)
+        world.moveParty(.forward)
         
-        #expect(world.position == Coordinate(x: 0, y: 2))
+        #expect(world.partyPosition == Coordinate(x: 0, y: 2))
     }
     
     @Test("stays in the same position, when you move forward first, then right, then back and finally left") func moveInACircle() {
         let world = World(map: Map())
         
-        world.move(.forward)
-        world.move(.right)
-        world.move(.backwards)
-        world.move(.left)
+        world.moveParty(.forward)
+        world.moveParty(.right)
+        world.moveParty(.backwards)
+        world.moveParty(.left)
         
-        #expect(world.position == Coordinate(x: 0, y: 0))
+        #expect(world.partyPosition == Coordinate(x: 0, y: 0))
     }
     
     @Test("get to the expected coordinate when it moves in the designated direction while heading a certain way", arguments: [
@@ -49,11 +49,11 @@ import Testing
         (Coordinate(x: 24, y: 72), CompassDirection.north, MovementDirection.left, Coordinate(x: 23, y: 72)),
         (Coordinate(x: 24, y: 72), CompassDirection.south, MovementDirection.left, Coordinate(x: 25, y: 72)),
     ]) func movementTakesHeadingIntoAccount(testcase: (startPosition: Coordinate, heading: CompassDirection, movementDirection: MovementDirection, expectedPosition: Coordinate)) {
-        let world = World(map: Map(), position: testcase.startPosition, heading: testcase.heading)
+        let world = World(map: Map(), partyStartPosition: testcase.startPosition, partyStartHeading: testcase.heading)
         
-        world.move(testcase.movementDirection)
+        world.moveParty(testcase.movementDirection)
         
-        #expect(world.position == testcase.expectedPosition)
+        #expect(world.partyPosition == testcase.expectedPosition)
     }
     
     @Test("not move through walls") func cannotMoveThroughWalls() {
@@ -62,11 +62,11 @@ import Testing
             ["#",".",".","#"],
             ["#","#","#","#"],
         ])
-        let world = World(map: map, position: Coordinate(x: 0, y: 1))
+        let world = World(map: map, partyStartPosition: Coordinate(x: 0, y: 1))
         
-        world.move(.forward)
+        world.moveParty(.forward)
         
-        #expect(world.position == Coordinate(x: 0, y: 1))
+        #expect(world.partyPosition == Coordinate(x: 0, y: 1))
     }
 }
 
@@ -74,33 +74,33 @@ import Testing
     @Test("face north when the new player is created") func newPlayerFacesNorth() {
         let world = World(map: Map())
         
-        #expect(world.heading == .north)
+        #expect(world.partyHeading == .north)
     }
     
     @Test("face east when it turns clockwise") func turnClockwiseOnce() {
         let world = World(map: Map())
         
-        world.turnClockwise()
+        world.turnPartyClockwise()
         
-        #expect(world.heading == .east)
+        #expect(world.partyHeading == .east)
     }
     
     @Test("face west when it turns clockwise three times") func turnClockwiseThreeTimes() {
         let world = World(map: Map())
         
-        world.turnClockwise()
-        world.turnClockwise()
-        world.turnClockwise()
+        world.turnPartyClockwise()
+        world.turnPartyClockwise()
+        world.turnPartyClockwise()
         
-        #expect(world.heading == .west)
+        #expect(world.partyHeading == .west)
     }
     
     @Test("face west when it turns counter clockwise once") func turnCounterClockwise() {
         let world = World(map: Map())
         
-        world.turnCounterClockwise()
+        world.turnPartyCounterClockwise()
         
-        #expect(world.heading == .west)
+        #expect(world.partyHeading == .west)
     }
 }
 
@@ -117,7 +117,7 @@ import Testing
         ])
         let player = World(map: map)
         
-        player.ascendStairs(in: map)
+        player.partyAscendStairs(in: map)
         
         #expect(player.currentFloor == 1)
     }
@@ -128,7 +128,7 @@ import Testing
         ])
         let world = World(map: map)        
         
-        world.ascendStairs(in: map)
+        world.partyAscendStairs(in: map)
         
         #expect(world.currentFloor == 0)
     }

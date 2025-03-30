@@ -6,39 +6,38 @@
 //
 
 final class World {
-    private(set) var position: Coordinate
-    private(set) var heading: CompassDirection
-    
+    private(set) var partyPosition: Coordinate
+    private(set) var partyHeading: CompassDirection
     private(set) var currentFloor = 0
     
     let map: Map
     
-    init(map: Map, position: Coordinate = Coordinate(x: 0, y: 0), heading: CompassDirection = CompassDirection.north) {
+    init(map: Map, partyStartPosition: Coordinate = Coordinate(x: 0, y: 0), partyStartHeading: CompassDirection = CompassDirection.north) {
         self.map = map
-        self.position = position
-        self.heading = heading
+        self.partyPosition = partyStartPosition
+        self.partyHeading = partyStartHeading
     }
     
-    func move(_ direction: MovementDirection) {
-        let newPosition = position + direction.toCompassDirection(facing: heading).toCoordinate
+    func moveParty(_ direction: MovementDirection) {
+        let newPosition = partyPosition + direction.toCompassDirection(facing: partyHeading).toCoordinate
         
         guard map.hasWall(at: newPosition) == false else {
             return
         }
         
-        position = newPosition
+        partyPosition = newPosition
     }
     
-    func turnClockwise() {
-        heading = heading.rotatedClockwise()
+    func turnPartyClockwise() {
+        partyHeading = partyHeading.rotatedClockwise()
     }
     
-    func turnCounterClockwise() {
-        heading = heading.rotatedCounterClockwise()
+    func turnPartyCounterClockwise() {
+        partyHeading = partyHeading.rotatedCounterClockwise()
     }
     
-    func ascendStairs(in map: Map) {
-        guard map.hasStairsUp(at: position) else {
+    func partyAscendStairs(in map: Map) {
+        guard map.hasStairsUp(at: partyPosition) else {
             return
         }
         

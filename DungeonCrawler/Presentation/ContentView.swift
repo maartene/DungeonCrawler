@@ -16,7 +16,7 @@ struct ContentView: View {
         ["#",".",".","#",".","#"],
         ["#",".",".",".",".","#"],
         ["#","#","#","#","#","#"],
-    ]))
+    ]), partyStartPosition: Coordinate(x: 1, y: 1))
     
     var body: some View {
         ZStack {

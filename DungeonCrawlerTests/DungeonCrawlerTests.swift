@@ -22,7 +22,7 @@ import Testing
         #expect(world.partyPosition == testcase.expectedPosition)
     }
     
-    @Test("get to coordinate (0,2) when it moves forward twice") func movePlayerForwardTwice() {
+    @Test("get to coordinate (0,2) when it moves forward twice") func movePartyForwardTwice() {
         let world = World(map: Map())
         
         world.moveParty(.forward)
@@ -70,8 +70,8 @@ import Testing
     }
 }
 
-@Suite("Player rotation should") struct PlayerRotationTests {
-    @Test("face north when the new player is created") func newPlayerFacesNorth() {
+@Suite("Party rotation should") struct PartyRotationTests {
+    @Test("face north when the new world is created") func partyInNewWorldFacesNorth() {
         let world = World(map: Map())
         
         #expect(world.partyHeading == .north)
@@ -105,24 +105,24 @@ import Testing
 }
 
 @Suite("When moving from one floor to another") struct MultipleLevelTests {
-    @Test("a new player starts at floornumber 0") func newPlayerStartsAtFloor0() {
+    @Test("a new party starts at floornumber 0") func newPartyStartsAtFloor0() {
         let world = World(map: Map())
         
         #expect(world.currentFloor == 0)
     }
     
-    @Test("when a player moves up a staircase, the floornumber should increase by 1") func playerMovesUpStairs() {
+    @Test("when a party moves up a staircase, the floornumber should increase by 1") func partyMovesUpStairs() {
         let map = Map([
             ["<"]
         ])
-        let player = World(map: map)
+        let world = World(map: map)
         
-        player.partyAscendStairs(in: map)
+        world.partyAscendStairs(in: map)
         
-        #expect(player.currentFloor == 1)
+        #expect(world.currentFloor == 1)
     }
     
-    @Test("when a player is not on a staircase leading up, and the player tries to ascend, the floornumber does not change") func playerCannotMoveUpStairsIfNotOnStairs() {
+    @Test("when a party is not on a staircase leading up, and the party tries to ascend, the floornumber does not change") func partyCannotMoveUpStairsIfNotOnStairs() {
         let map = Map([
             ["."]
         ])

@@ -1,11 +1,12 @@
 # BACKLOG
 
-## Player movement
+## Party movement
 
 - move in all four cardinal directions ✅
 - rotate around ✅
 - take facing into account when moving around ✅
-- don't move through walls
+- don't move through walls ✅
+- move up and down stairs
 
 ## Controls
 

@@ -45,3 +45,6 @@
 ## 🍅 Pomodoro 8 - start working on moving up and down floors
 - ✅ refactored the conversion from game logic coordinate and direction space to 3D coordinates and rotations
 - ✅ move up a floor when standing on a stairs leading up.
+
+## 🍅 Pomodoro 9 - Refactoring
+- ✅ remove unneeded `Player` abstraction - solving several code smells in one fell swoop

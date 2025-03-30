@@ -1,9 +1,8 @@
 #  Tech Debt
 
 ## ⚠️ TODO
-- Inspecting the map for features
+- Inspecting the map for features (`hasWall` and `hasStairsUp`, ...)
 - Cleanup initializer for `Map`
-
 
 ## ✅ DONE
 - World code should be test driven, it is not right now

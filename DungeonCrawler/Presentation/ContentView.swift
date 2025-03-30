@@ -9,7 +9,14 @@ import SwiftUI
 import RealityKit
 
 struct ContentView: View {
-    let world = World()
+    let world = World(map: Map([
+        ["#","#","#","#","#","#"],
+        ["#",".",".",".",".","#"],
+        ["#",".","#",".",".","#"],
+        ["#",".",".","#",".","#"],
+        ["#",".",".",".",".","#"],
+        ["#","#","#","#","#","#"],
+    ]))
     
     var body: some View {
         ZStack {
@@ -17,25 +24,25 @@ struct ContentView: View {
             VStack {
                 HStack {
                     Button("Turn CCW") {
-                        world.player.turnCounterClockwise()
+                        world.turnCounterClockwise()
                     }.keyboardShortcut("q", modifiers: [])
                     Button("Forward") {
-                        world.player.move(.forward, in: world.map)
+                        world.move(.forward)
                     }.keyboardShortcut("w", modifiers: [])
                     Button("Turn CW") {
-                        world.player.turnClockwise()
+                        world.turnClockwise()
                     }.keyboardShortcut("e", modifiers: [])
                 }
                 
                 HStack {
                     Button("Left") {
-                        world.player.move(.left, in: world.map)
+                        world.move(.left)
                     }.keyboardShortcut("a", modifiers: [])
                     Button("Back") {
-                        world.player.move(.backwards, in: world.map)
+                        world.move(.backwards)
                     }.keyboardShortcut("s", modifiers: [])
                     Button("Right") {
-                        world.player.move(.right, in: world.map)
+                        world.move(.right)
                     }.keyboardShortcut("d", modifiers: [])
                     
                 }

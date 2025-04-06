@@ -29,6 +29,10 @@ final class World {
             currentFloor += 1
         }
         
+        if map.hasStairsDown(at: newPosition) {
+            currentFloor -= 1
+        }
+        
         partyPosition = newPosition
     }
     

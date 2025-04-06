@@ -8,6 +8,7 @@
 struct Map {
     private var walls = Set<Coordinate>()
     private var stairsUp = Set<Coordinate>()
+    private var stairsDown = Set<Coordinate>()
     
     var minX: Int {
         walls.map { $0.x }.min() ?? 0
@@ -35,6 +36,10 @@ struct Map {
                 if mapArray[row][column] == "<" {
                     stairsUp.insert(Coordinate(x: column, y: row))
                 }
+                
+                if mapArray[row][column] == ">" {
+                    stairsDown.insert(Coordinate(x: column, y: row))
+                }
             }
         }
     }
@@ -45,5 +50,9 @@ struct Map {
     
     func hasStairsUp(at coordinate: Coordinate) -> Bool {
         stairsUp.contains(coordinate)
+    }
+    
+    func hasStairsDown(at coordinate: Coordinate) -> Bool {
+        stairsDown.contains(coordinate)
     }
 }

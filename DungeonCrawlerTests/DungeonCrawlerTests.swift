@@ -121,4 +121,15 @@ import Testing
         
         #expect(world.currentFloor == 1)
     }
+    
+    @Test("when a party moves into a staircase leading down, the floornumber should decrease by 1") func partyMovesDownStairs() {
+        let map = Map([
+            [".",">"]
+        ])
+        let world = World(map: map)
+        
+        world.moveParty(.right)
+        
+        #expect(world.currentFloor == -1)
+    }
 }

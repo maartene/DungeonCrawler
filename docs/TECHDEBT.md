@@ -1,7 +1,6 @@
 #  Tech Debt
 
 ## ⚠️ TODO
-- Inspecting the map for features (`hasWall` and `hasStairsUp`, ...)
 - Cleanup initializer for `Map`
 
 ## ✅ DONE
@@ -14,3 +13,4 @@
 - missing tests for `toAngleAroundAxis` and `toSIMD3`
 - Feature envy and/or message chains in `ContentView` and `GameView` where the world's internal properties get accessed directly.
 - Hard coded starting position for player in `World`
+- Inspecting the map for features (`hasWall` and `hasStairsUp`, ...)

@@ -38,6 +38,30 @@ struct GameView: NSViewRepresentable {
         return cubeAnchor
     }
     
+    private func createStairsUp(worldPosition: SIMD3<Float>) -> AnchorEntity {
+        let color = NSColor(hue: 0.1, saturation: 1, brightness: 1, alpha: 1)
+        var cubeMaterial = SimpleMaterial(color: color, isMetallic: true)
+        cubeMaterial.metallic = 0.2
+        cubeMaterial.roughness = 0.7
+        let cubeEntity = Entity(components: [ModelComponent(mesh: .generateSphere(radius: 0.5), materials: [cubeMaterial])])
+        let cubeAnchor = AnchorEntity(world: worldPosition)
+        cubeAnchor.addChild(cubeEntity)
+        
+        return cubeAnchor
+    }
+    
+    private func createStairsDown(worldPosition: SIMD3<Float>) -> AnchorEntity {
+        let color = NSColor(hue: 0.7, saturation: 1, brightness: 1, alpha: 1)
+        var cubeMaterial = SimpleMaterial(color: color, isMetallic: true)
+        cubeMaterial.metallic = 0.2
+        cubeMaterial.roughness = 0.7
+        let cubeEntity = Entity(components: [ModelComponent(mesh: .generateSphere(radius: 0.5), materials: [cubeMaterial])])
+        let cubeAnchor = AnchorEntity(world: worldPosition)
+        cubeAnchor.addChild(cubeEntity)
+        
+        return cubeAnchor
+    }
+    
     private func addFloorAndCeiling(_ arView: ARView) {
         // create floor
         let floorMaterial = SimpleMaterial(color: .gray, isMetallic: false)
@@ -57,6 +81,17 @@ struct GameView: NSViewRepresentable {
         for row in world.map.minX ... world.map.maxX {
             for col in world.map.minX ... world.map.maxX {
                 let coordinate = Coordinate(x: col, y: row)
+                switch world.map.tileAt(coordinate) {
+                case .wall:
+                    arView.scene.addAnchor(createCube(worldPosition: coordinate.toSIMD3))
+                case .stairsUp:
+                    arView.scene.addAnchor(createStairsUp(worldPosition: coordinate.toSIMD3))
+                case .stairsDown:
+                    arView.scene.addAnchor(createStairsDown(worldPosition: coordinate.toSIMD3))
+                default:
+                    break
+                }
+                
                 if world.map.tileAt(coordinate) == .wall {
                     arView.scene.addAnchor(createCube(worldPosition: coordinate.toSIMD3))
                 }

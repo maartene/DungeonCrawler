@@ -41,11 +41,14 @@ struct Map {
     }
     
     init(_ mapArray: [[Character]] = [[]]) {
+        var readTiles = [Coordinate: Tile]()
         for row in 0 ..< mapArray.count {
             for column in 0 ..< mapArray[0].count {
-                tiles[Coordinate(x: column, y: row)] = Tile.characterToTile(mapArray[row][column])
+                readTiles[Coordinate(x: column, y: row)] = Tile.characterToTile(mapArray[row][column])
             }
         }
+        
+        self.tiles = readTiles.filter { $0.value != .floor }
     }
     
     func tileAt(_ coordinate: Coordinate) -> Tile {

@@ -29,9 +29,11 @@ final class World {
         case .stairsUp:
             currentFloor += 1
             partyPosition = newPosition
+            print("Moving up!")
         case .stairsDown:
             currentFloor -= 1
             partyPosition = newPosition
+            print("Moving down!")
         default:
             break
         }

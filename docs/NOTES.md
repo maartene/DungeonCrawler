@@ -48,3 +48,8 @@
 
 ## 🍅 Pomodoro 9 - Refactoring
 - ✅ remove unneeded `Player` abstraction - solving several code smells in one fell swoop
+
+## 🍅 Pomodoro 10 - Changed stair behaviour
+- ✅ You move up or down stairs when you move into them
+- ✅ Map can now be instected for tiles at a position
+- ✅ Add stair visual stubs to the game view

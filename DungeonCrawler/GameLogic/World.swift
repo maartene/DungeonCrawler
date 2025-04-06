@@ -21,19 +21,20 @@ final class World {
     func moveParty(_ direction: MovementDirection) {
         let newPosition = partyPosition + direction.toCompassDirection(facing: partyHeading).toCoordinate
         
-        guard map.hasWall(at: newPosition) == false else {
-            return
-        }
-        
-        if map.hasStairsUp(at: newPosition) {
+        switch map.tileAt(newPosition) {
+        case .floor:
+            partyPosition = newPosition
+        case .wall:
+            break
+        case .stairsUp:
             currentFloor += 1
-        }
-        
-        if map.hasStairsDown(at: newPosition) {
+            partyPosition = newPosition
+        case .stairsDown:
             currentFloor -= 1
+            partyPosition = newPosition
+        default:
+            break
         }
-        
-        partyPosition = newPosition
     }
     
     func turnPartyClockwise() {

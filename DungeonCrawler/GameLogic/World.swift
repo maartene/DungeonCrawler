@@ -25,6 +25,10 @@ final class World {
             return
         }
         
+        if map.hasStairsUp(at: newPosition) {
+            currentFloor += 1
+        }
+        
         partyPosition = newPosition
     }
     
@@ -34,13 +38,5 @@ final class World {
     
     func turnPartyCounterClockwise() {
         partyHeading = partyHeading.rotatedCounterClockwise()
-    }
-    
-    func partyAscendStairs(in map: Map) {
-        guard map.hasStairsUp(at: partyPosition) else {
-            return
-        }
-        
-        currentFloor += 1
     }
 }

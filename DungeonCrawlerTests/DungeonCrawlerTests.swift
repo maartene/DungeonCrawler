@@ -111,25 +111,14 @@ import Testing
         #expect(world.currentFloor == 0)
     }
     
-    @Test("when a party moves up a staircase, the floornumber should increase by 1") func partyMovesUpStairs() {
+    @Test("when a party moves into a staircase, the floornumber should increase by 1") func partyMovesUpStairs() {
         let map = Map([
-            ["<"]
+            [".","<"]
         ])
         let world = World(map: map)
         
-        world.partyAscendStairs(in: map)
+        world.moveParty(.right)
         
         #expect(world.currentFloor == 1)
-    }
-    
-    @Test("when a party is not on a staircase leading up, and the party tries to ascend, the floornumber does not change") func partyCannotMoveUpStairsIfNotOnStairs() {
-        let map = Map([
-            ["."]
-        ])
-        let world = World(map: map)        
-        
-        world.partyAscendStairs(in: map)
-        
-        #expect(world.currentFloor == 0)
     }
 }

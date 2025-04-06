@@ -66,16 +66,4 @@ struct Map {
     func tileAt(_ coordinate: Coordinate) -> Tile {
         tiles[coordinate, default: .floor]
     }
-    
-    func hasWall(at coordinate: Coordinate) -> Bool {
-        tileAt(coordinate) == .wall
-    }
-    
-    func hasStairsUp(at coordinate: Coordinate) -> Bool {
-        tileAt(coordinate) == .stairsUp
-    }
-    
-    func hasStairsDown(at coordinate: Coordinate) -> Bool {
-        tileAt(coordinate) == .stairsDown
-    }
 }

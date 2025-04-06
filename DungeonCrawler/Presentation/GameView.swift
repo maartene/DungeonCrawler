@@ -57,7 +57,7 @@ struct GameView: NSViewRepresentable {
         for row in world.map.minX ... world.map.maxX {
             for col in world.map.minX ... world.map.maxX {
                 let coordinate = Coordinate(x: col, y: row)
-                if world.map.hasWall(at: coordinate) {
+                if world.map.tileAt(coordinate) == .wall {
                     arView.scene.addAnchor(createCube(worldPosition: coordinate.toSIMD3))
                 }
             }

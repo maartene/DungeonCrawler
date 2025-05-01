@@ -38,43 +38,14 @@ struct GameView: NSViewRepresentable {
         return cubeAnchor
     }
     
-    private func createStairsUp(worldPosition: SIMD3<Float>) -> AnchorEntity {
-        let color = NSColor(hue: 0.1, saturation: 1, brightness: 1, alpha: 1)
-        var cubeMaterial = SimpleMaterial(color: color, isMetallic: true)
-        cubeMaterial.metallic = 0.2
-        cubeMaterial.roughness = 0.7
-        let cubeEntity = Entity(components: [ModelComponent(mesh: .generateSphere(radius: 0.5), materials: [cubeMaterial])])
-        let cubeAnchor = AnchorEntity(world: worldPosition)
-        cubeAnchor.addChild(cubeEntity)
+    private func placeModelAt(model: String, worldPosition: SIMD3<Float>) -> AnchorEntity {
+        guard let entity = try? Entity.load(named: model) else {
+            fatalError("Failed to load model - \(model)")
+        }
+        let anchor = AnchorEntity(world: worldPosition)
+        anchor.addChild(entity)
         
-        return cubeAnchor
-    }
-    
-    private func createStairsDown(worldPosition: SIMD3<Float>) -> AnchorEntity {
-        let color = NSColor(hue: 0.7, saturation: 1, brightness: 1, alpha: 1)
-        var cubeMaterial = SimpleMaterial(color: color, isMetallic: true)
-        cubeMaterial.metallic = 0.2
-        cubeMaterial.roughness = 0.7
-        let cubeEntity = Entity(components: [ModelComponent(mesh: .generateSphere(radius: 0.5), materials: [cubeMaterial])])
-        let cubeAnchor = AnchorEntity(world: worldPosition)
-        cubeAnchor.addChild(cubeEntity)
-        
-        return cubeAnchor
-    }
-    
-    private func addFloorAndCeiling(_ arView: ARView) {
-        // create floor
-        let floorMaterial = SimpleMaterial(color: .gray, isMetallic: false)
-        let floorEntity = ModelEntity(mesh: .generatePlane(width: 10, depth: 10), materials: [floorMaterial])
-        let floorAnchor = AnchorEntity(world: SIMD3<Float>(x: 0, y: -0.5, z: 0))
-        floorAnchor.addChild(floorEntity)
-        arView.scene.addAnchor(floorAnchor)
-        
-        let ceilingEntity = ModelEntity(mesh: .generatePlane(width: 10, depth: 10), materials: [floorMaterial])
-        let ceilingAnchor = AnchorEntity(world: SIMD3<Float>(x: 0, y: 0.5, z: 0))
-        ceilingAnchor.transform.rotation = simd_quatf(angle: .pi, axis: [0, 0, 1])
-        ceilingAnchor.addChild(ceilingEntity)
-        arView.scene.addAnchor(ceilingAnchor)
+        return anchor
     }
     
     private func setupView(_ arView: ARView) {
@@ -83,17 +54,13 @@ struct GameView: NSViewRepresentable {
                 let coordinate = Coordinate(x: col, y: row)
                 switch world.map.tileAt(coordinate) {
                 case .wall:
-                    arView.scene.addAnchor(createCube(worldPosition: coordinate.toSIMD3))
+                    arView.scene.addAnchor(placeModelAt(model: "Wall", worldPosition: coordinate.toSIMD3))
                 case .stairsUp:
-                    arView.scene.addAnchor(createStairsUp(worldPosition: coordinate.toSIMD3))
+                    arView.scene.addAnchor(placeModelAt(model: "stairsUp", worldPosition: coordinate.toSIMD3))
                 case .stairsDown:
-                    arView.scene.addAnchor(createStairsDown(worldPosition: coordinate.toSIMD3))
+                    arView.scene.addAnchor(placeModelAt(model: "stairsDown", worldPosition: coordinate.toSIMD3))
                 default:
-                    break
-                }
-                
-                if world.map.tileAt(coordinate) == .wall {
-                    arView.scene.addAnchor(createCube(worldPosition: coordinate.toSIMD3))
+                    arView.scene.addAnchor(placeModelAt(model: "FloorTile", worldPosition: coordinate.toSIMD3))
                 }
             }
         }
@@ -102,6 +69,7 @@ struct GameView: NSViewRepresentable {
             fatalError("Unable to load skybox resource")
         }
         
+        arView.environment.background = .color(.black)
         arView.environment.lighting.resource = skyboxResource
         
         let camera = PerspectiveCamera()
@@ -112,8 +80,6 @@ struct GameView: NSViewRepresentable {
         
         let lightEntity = PointLight()
         cameraAnchor.addChild(lightEntity)
-        
-        addFloorAndCeiling(arView)
         
         let worldEntity = Entity(components: [WorldComponent(world: world)])
         worldEntity.name = "WorldEntity"

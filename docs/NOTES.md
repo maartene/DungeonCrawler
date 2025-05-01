@@ -53,3 +53,6 @@
 - ✅ You move up or down stairs when you move into them
 - ✅ Map can now be instected for tiles at a position
 - ✅ Add stair visual stubs to the game view
+
+## 🍅 Pomodoro 11 - Added models for walls, stairs and floor/ceiling
+- ✅ Added models and changed background color

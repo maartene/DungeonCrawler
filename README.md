@@ -8,3 +8,7 @@ Topic we'll cover:
 - Coverting assets for use in RealityKit and importing them
 - Bridging game logic to what is shown on screen
 - Using Test Driven Development and Refactoring to keep our model code nice and clean. At least attempt to do so 😅
+
+## Licensed assets
+
+- [Kay Lousberg's Kaykit - Dungeon Remastered Pack](https://kaylousberg.itch.io/kaykit-dungeon-remastered)

@@ -1,9 +1,12 @@
-#  Tech Debt
+# Tech Debt
 
 ## ⚠️ TODO
+
 - Cleanup initializer for `Map`
+- Stairs up only look good at bottom of map and stairs down only look good at top of map
 
 ## ✅ DONE
+
 - World code should be test driven, it is not right now
 - Cleanup the mess that the folder structure is
 - Player `position` breaks encapsulation as its changeable from outside of the class.

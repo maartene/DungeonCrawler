@@ -11,3 +11,10 @@
 ## Controls
 
 - Buttons on screen as well as keyboard controls ✅
+
+## Reminders
+
+- When making maps, be sure to place stairs:
+  - Stairs up at bottom of map
+  - Stairs down at top of map
+  - Have stairs have walls at three sides of map

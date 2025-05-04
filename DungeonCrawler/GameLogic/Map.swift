@@ -55,3 +55,5 @@ struct Map {
         tiles[coordinate, default: .floor]
     }
 }
+
+extension Map: Equatable { }

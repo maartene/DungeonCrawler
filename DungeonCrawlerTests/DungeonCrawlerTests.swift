@@ -105,31 +105,35 @@ import Testing
 }
 
 @Suite("When moving from one floor to another") struct MultipleLevelTests {
-    @Test("a new party starts at floornumber 0") func newPartyStartsAtFloor0() {
-        let world = World(map: Map())
+    let floor1 = Map([
+        [".","<"]
+    ])
+    
+    let floor2 = Map([
+        [".",">"]
+    ])
+    
+    @Test("a new party starts at the first floor") func newPartyStartsAtFirstFloor() {
+        let world = World(floors: [floor1, floor2])
         
-        #expect(world.currentFloor == 0)
+        #expect(world.currentFloor == floor1)
     }
     
-    @Test("when a party moves into a staircase, the floornumber should increase by 1") func partyMovesUpStairs() {
-        let map = Map([
-            [".","<"]
-        ])
-        let world = World(map: map)
+    @Test("when a party moves into a staircase, they should end up on the second floor") func partyMovesUpStairs() {
+        let world = World(floors: [floor1, floor2])
         
         world.moveParty(.right)
         
-        #expect(world.currentFloor == 1)
+        #expect(world.currentFloor == floor2)
     }
     
-    @Test("when a party moves into a staircase leading down, the floornumber should decrease by 1") func partyMovesDownStairs() {
-        let map = Map([
-            [".",">"]
-        ])
-        let world = World(map: map)
+    @Test("when a party moves into a staircase leading down when they are on the second floor, they should end up on the first floor") func partyMovesDownStairs() {
+        let world = World(floors: [floor1, floor2])
+        world.moveParty(.right) // end up on floor 2
         
+        world.moveParty(.left)
         world.moveParty(.right)
         
-        #expect(world.currentFloor == -1)
+        #expect(world.currentFloor == floor1)
     }
 }

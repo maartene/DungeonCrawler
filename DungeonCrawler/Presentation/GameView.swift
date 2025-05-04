@@ -49,10 +49,10 @@ struct GameView: NSViewRepresentable {
     }
     
     private func setupView(_ arView: ARView) {
-        for row in world.map.minX ... world.map.maxX {
-            for col in world.map.minX ... world.map.maxX {
+        for row in world.currentFloor.minY ... world.currentFloor.maxY {
+            for col in world.currentFloor.minX ... world.currentFloor.maxX {
                 let coordinate = Coordinate(x: col, y: row)
-                switch world.map.tileAt(coordinate) {
+                switch world.currentFloor.tileAt(coordinate) {
                 case .wall:
                     arView.scene.addAnchor(placeModelAt(model: "Wall", worldPosition: coordinate.toSIMD3))
                 case .stairsUp:

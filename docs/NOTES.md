@@ -56,3 +56,8 @@
 
 ## 🍅 Pomodoro 11 - Added models for walls, stairs and floor/ceiling
 - ✅ Added models and changed background color
+
+## 🍅 Pomodoro 12 - Move between floors properly
+- ✅ Move between floors and the map changes
+- ✅ Visual representation also changes
+- ✅ Added caching to improve performance when changing floors

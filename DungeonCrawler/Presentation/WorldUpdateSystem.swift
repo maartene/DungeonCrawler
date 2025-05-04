@@ -18,6 +18,7 @@ class WorldUpdateSystem: System {
     var cameraAnchor: AnchorEntity!
     private var currentRenderedFloor: Map?
     private var mapAnchor: AnchorEntity?
+    private var modelCache = [String: Entity]()
     
     // Initializer is required. Use an empty implementation if there's no setup needed.
     required init(scene: RealityKit.Scene) {
@@ -89,12 +90,23 @@ class WorldUpdateSystem: System {
     }
     
     private func placeModelAt(model: String, worldPosition: SIMD3<Float>) -> AnchorEntity {
+        let entity = loadEntity(model: model)
+        let anchor = AnchorEntity(world: worldPosition)
+        anchor.addChild(entity.clone(recursive: true))
+        
+        return anchor
+    }
+    
+    private func loadEntity(model: String) -> Entity {
+        if let entity = modelCache[model] {
+            return entity
+        }
+        
         guard let entity = try? Entity.load(named: model) else {
             fatalError("Failed to load model - \(model)")
         }
-        let anchor = AnchorEntity(world: worldPosition)
-        anchor.addChild(entity)
         
-        return anchor
+        modelCache[model] = entity
+        return entity
     }
 }

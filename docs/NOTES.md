@@ -61,3 +61,8 @@
 - ✅ Move between floors and the map changes
 - ✅ Visual representation also changes
 - ✅ Added caching to improve performance when changing floors
+
+## 🍅 Pomodoro 13 - Win and Lose conditions
+- ✅ Implemented a very simple win condition
+- ✅ Added a viewmodel that can notify observers (i.e. the UI) of changes to the world state
+- ✅ Made sure the viewmodel gets updated every frame

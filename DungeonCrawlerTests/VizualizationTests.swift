@@ -8,6 +8,7 @@
 import Testing
 @testable import DungeonCrawler
 import simd
+import Combine
 
 @Suite("Converting between game logic structures and visual representations should") struct ConversionGameLogicAndVizualizationTests {
     @Test("return the expected position and rotation for specific testcases", arguments: [
@@ -34,5 +35,34 @@ import simd
     ]) func convertingBetweenGameLogicPositionAndRotationAndVizualization(testcase: (position: Coordinate, heading: CompassDirection, expectedPosition: SIMD3<Float>, expectedRotation: simd_quatf)) {
         #expect(testcase.position.toSIMD3 == testcase.expectedPosition)
         #expect(testcase.heading.toFloatQuaternion == testcase.expectedRotation)
+    }
+}
+
+
+
+final class MockObserver {
+    var state = WorldState.undetermined
+    var cancelables = Set<AnyCancellable>()
+    
+    init(observing viewModel: ViewModel) {
+        viewModel.$worldState.sink { [weak self] in
+            self?.state = $0
+        }.store(in: &cancelables)
+    }
+}
+
+@Suite("ViewModel should") struct ViewModelTests {
+    @Test("When the state of the world changes and the ViewModel is updates, the ViewModel notifies its observers") func viewModelNotifiesObserversOfWorldStateChanges() {
+        let world = World(map: Map([
+            [".","T"]
+        ]))
+        let viewModel = ViewModel(world: world)
+        let observer = MockObserver(observing: viewModel)
+        world.moveParty(.right)
+        
+        viewModel.update()
+        
+        #expect(observer.state == .win)
+        
     }
 }

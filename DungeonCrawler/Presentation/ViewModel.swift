@@ -6,6 +6,27 @@
 //
 
 import simd
+import Combine
+import QuartzCore
+import Foundation
+import AppKit
+
+final class ViewModel: ObservableObject {
+    let world: World
+    @Published var worldState: WorldState
+    
+    init(world: World) {
+        self.world = world
+        worldState = world.state
+        
+        let displayLink = NSScreen.main?.displayLink(target: self, selector: #selector(update))
+        displayLink?.add(to: .current, forMode: .common)
+    }
+    
+    @objc func update() {
+        worldState = world.state
+    }
+}
 
 extension Coordinate {
     var toSIMD3: SIMD3<Float> {

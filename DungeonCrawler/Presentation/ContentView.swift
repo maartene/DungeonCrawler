@@ -9,30 +9,43 @@ import SwiftUI
 import RealityKit
 
 struct ContentView: View {
-    let world = World(floors: [
-            Map([
-            ["#", "#", "#", "#", "#", "#"],
-            ["#", ".", ".", "#", ".", "#"],
-            ["#", ".", ".", ".", ".", "#"],
-            ["#", ".", ".", ".", ".", "#"],
-            ["#", "<", "#", ".", ".", "#"],
-            ["#", "#", "#", "#", "#", "#"]
-            ]),
-            Map([
-            ["#", "#", "#", "#", "#", "#"],
-            ["#", ".", ".", ".", ".", "#"],
-            ["#", ".", ".", ".", ".", "#"],
-            ["#", "#", "#", ".", ".", "#"],
-            ["#", ">", "#", ".", ".", "#"],
-            ["#", ".", ".", ".", ".", "#"],
-            ["#", "#", "#", "#", "#", "#"]
-        ])
-    ], partyStartPosition: Coordinate(x: 1, y: 1))
+    let world: World
+    @ObservedObject var viewModel: ViewModel
+    
+    init() {
+        world = World(floors: [
+                Map([
+                ["#", "#", "#", "#", "#", "#"],
+                ["#", ".", ".", "#", ".", "#"],
+                ["#", ".", ".", ".", ".", "#"],
+                ["#", ".", ".", ".", ".", "#"],
+                ["#", "<", "#", ".", ".", "#"],
+                ["#", "#", "#", "#", "#", "#"]
+                ]),
+                Map([
+                ["#", "#", "#", "#", "#", "#"],
+                ["#", ".", ".", ".", ".", "#"],
+                ["#", ".", ".", ".", ".", "#"],
+                ["#", "#", "#", ".", ".", "#"],
+                ["#", ">", "#", ".", ".", "#"],
+                ["#", "T", ".", ".", ".", "#"],
+                ["#", "#", "#", "#", "#", "#"]
+            ])
+        ], partyStartPosition: Coordinate(x: 1, y: 1))
 
+        viewModel = ViewModel(world: world)
+    }
+    
     var body: some View {
         ZStack {
             GameView(world: world)
             VStack {
+                VStack {
+                    Text("State: \(viewModel.worldState)")
+                }
+                .background(Color.gray.opacity(0.2))
+                    .foregroundStyle(.white)
+                
                 HStack {
                     Button("Turn CCW") {
                         world.turnPartyCounterClockwise()

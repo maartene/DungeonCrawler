@@ -10,12 +10,14 @@ enum Tile {
     case wall
     case stairsUp
     case stairsDown
+    case winTarget
 
     static func characterToTile(_ character: Character) -> Tile {
         switch character {
         case "#": return .wall
         case "<": return .stairsUp
         case ">": return .stairsDown
+        case "T": return .winTarget
         default: return .floor
         }
     }

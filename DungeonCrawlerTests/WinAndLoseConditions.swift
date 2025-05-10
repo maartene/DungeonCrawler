@@ -14,4 +14,14 @@ import Testing
         
         #expect(world.state == .undetermined)
     }
+    
+    @Test("When the party reaches the target, the world should be in the 'win' state") func partyReachesTarget() {
+        let world = World(map: Map([
+            [".","T"]
+        ]))
+        
+        world.moveParty(.right)
+        
+        #expect(world.state == .win)
+    }
 }

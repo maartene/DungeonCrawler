@@ -11,10 +11,18 @@ final class World {
     private var currentFloorIndex = 0
 
     private let floors: [Map]
-    let state = WorldState.undetermined
+    
     
     var currentFloor: Map {
         floors[currentFloorIndex]
+    }
+    
+    var state: WorldState {
+        if currentFloor.tileAt(partyPosition) == .winTarget {
+            return .win
+        }
+        
+        return .undetermined
     }
 
     init(map: Map, partyStartPosition: Coordinate = Coordinate(x: 0, y: 0), partyStartHeading: CompassDirection = CompassDirection.north) {
@@ -33,8 +41,7 @@ final class World {
         let newPosition = partyPosition + direction.toCompassDirection(facing: partyHeading).toCoordinate
 
         switch currentFloor.tileAt(newPosition) {
-        case .floor:
-            partyPosition = newPosition
+        
         case .wall:
             break
         case .stairsUp:
@@ -42,6 +49,8 @@ final class World {
             partyPosition = newPosition
         case .stairsDown:
             currentFloorIndex -= 1
+            partyPosition = newPosition
+        default:
             partyPosition = newPosition
         }
     }

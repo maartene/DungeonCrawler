@@ -11,7 +11,8 @@ final class World {
     private var currentFloorIndex = 0
 
     let floors: [Map]
-
+    let state = WorldState.undetermined
+    
     var currentFloor: Map {
         floors[currentFloorIndex]
     }
@@ -52,4 +53,10 @@ final class World {
     func turnPartyCounterClockwise() {
         partyHeading = partyHeading.rotatedCounterClockwise()
     }
+}
+
+enum WorldState {
+    case undetermined
+    case win
+    case lose
 }

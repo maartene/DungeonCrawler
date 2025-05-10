@@ -10,7 +10,7 @@ final class World {
     private(set) var partyHeading: CompassDirection
     private var currentFloorIndex = 0
 
-    let floors: [Map]
+    private let floors: [Map]
     let state = WorldState.undetermined
     
     var currentFloor: Map {

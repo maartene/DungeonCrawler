@@ -30,7 +30,7 @@ import simd
         (Coordinate(x: 0, y: 6), CompassDirection.south, SIMD3<Float>(0.0, 0.0, -6.0), simd_quatf(real: 7.54979e-08, imag: SIMD3<Float>(0.0, 1.0, 0.0))),
         (Coordinate(x: 5, y: -5), CompassDirection.west, SIMD3<Float>(5.0, 0.0, 5.0), simd_quatf(real: 0.7071068, imag: SIMD3<Float>(0.0, 0.70710677, 0.0))),
         (Coordinate(x: 6, y: 5), CompassDirection.east, SIMD3<Float>(6.0, 0.0, -5.0), simd_quatf(real: -0.70710677, imag: SIMD3<Float>(0.0, 0.70710677, 0.0))),
-        (Coordinate(x: -4, y: 5), CompassDirection.east, SIMD3<Float>(-4.0, 0.0, -5.0), simd_quatf(real: -0.70710677, imag: SIMD3<Float>(0.0, 0.70710677, 0.0))),
+        (Coordinate(x: -4, y: 5), CompassDirection.east, SIMD3<Float>(-4.0, 0.0, -5.0), simd_quatf(real: -0.70710677, imag: SIMD3<Float>(0.0, 0.70710677, 0.0)))
     ]) func convertingBetweenGameLogicPositionAndRotationAndVizualization(testcase: (position: Coordinate, heading: CompassDirection, expectedPosition: SIMD3<Float>, expectedRotation: simd_quatf)) {
         #expect(testcase.position.toSIMD3 == testcase.expectedPosition)
         #expect(testcase.heading.toFloatQuaternion == testcase.expectedRotation)

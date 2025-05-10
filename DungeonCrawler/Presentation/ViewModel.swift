@@ -25,7 +25,7 @@ extension CompassDirection {
         case .west:
             .pi * 0.5
         }
-        
+
         return simd_quatf(angle: angleAroundYAxis, axis: [0, 1, 0])
     }
 }

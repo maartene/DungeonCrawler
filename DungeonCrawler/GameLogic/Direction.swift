@@ -10,7 +10,7 @@ enum MovementDirection {
     case backwards
     case left
     case right
-    
+
     private var toCompassDirectionWhenFacingNorth: CompassDirection {
         switch self {
         case .forward: .north
@@ -19,7 +19,7 @@ enum MovementDirection {
         case .left: .west
         }
     }
-    
+
     func toCompassDirection(facing: CompassDirection = .north) -> CompassDirection {
         let numberOfQuarterTurns = facing.numberOfQuarterTurnsToNorth
         return toCompassDirectionWhenFacingNorth.rotatedClockwise(numberOfQuarterTurns)
@@ -31,7 +31,7 @@ enum CompassDirection {
     case east
     case south
     case west
-    
+
     var numberOfQuarterTurnsToNorth: Int {
         switch self {
         case .north: 0
@@ -40,7 +40,7 @@ enum CompassDirection {
         case .west:  3
         }
     }
-    
+
     func rotatedClockwise(_ times: Int = 1) -> CompassDirection {
         let rotatedClockwiseDirections: [CompassDirection: CompassDirection] = [
             .north: .east,
@@ -48,16 +48,16 @@ enum CompassDirection {
             .south: .west,
             .west: .north
         ]
-        
+
         var rotatedDirection = self
-        
+
         for _ in 0 ..< times {
             rotatedDirection = rotatedClockwiseDirections[rotatedDirection]!
         }
-        
+
         return rotatedDirection
     }
-    
+
     func rotatedCounterClockwise(_ times: Int = 1) -> CompassDirection {
         let rotatedCounterClockwiseDirections: [CompassDirection: CompassDirection] = [
             .north: .west,
@@ -65,16 +65,16 @@ enum CompassDirection {
             .south: .east,
             .west: .south
         ]
-        
+
         var rotatedDirection = self
-        
+
         for _ in 0 ..< times {
             rotatedDirection = rotatedCounterClockwiseDirections[rotatedDirection]!
         }
-        
+
         return rotatedDirection
     }
-    
+
     var toCoordinate: Coordinate {
         switch self {
         case .north: return Coordinate(x: 0, y: 1)
@@ -83,7 +83,7 @@ enum CompassDirection {
         case .east:  return Coordinate(x: 1, y: 0)
         }
     }
-    
+
     static var randomValue: CompassDirection {
         switch Int.random(in: 0 ..< 4) {
         case 0: return .north

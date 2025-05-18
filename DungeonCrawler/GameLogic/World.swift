@@ -58,10 +58,6 @@ final class World {
     }
 
     private func turnPartyCounterClockwise() {
-        guard canPerformAction else {
-            return
-        }
-        
         partyHeading = partyHeading.rotatedCounterClockwise()
     }
     

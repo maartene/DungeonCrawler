@@ -68,6 +68,9 @@ class WorldUpdateSystem: System {
                     mapAnchor?.addChild(placeModelAt(model: "stairsUp", worldPosition: coordinate.toSIMD3))
                 case .stairsDown:
                     mapAnchor?.addChild(placeModelAt(model: "stairsDown", worldPosition: coordinate.toSIMD3))
+                case .winTarget:
+                    mapAnchor?.addChild(placeModelAt(model: "FloorTile", worldPosition: coordinate.toSIMD3))
+                    mapAnchor?.addChild(placeModelAt(model: "target", worldPosition: coordinate.toSIMD3))
                 default:
                     mapAnchor?.addChild(placeModelAt(model: "FloorTile", worldPosition: coordinate.toSIMD3))
                 }

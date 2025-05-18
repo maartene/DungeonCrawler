@@ -43,7 +43,6 @@ final class World {
         }
         
         switch command {
-            
         case .move(direction: let direction):
             performMovement(direction)
         case .turnCounterClockwise:
@@ -51,14 +50,6 @@ final class World {
         case .turnClockwise:
             turnPartyClockwise()
         }
-    }
-
-    private func turnPartyClockwise() {
-        partyHeading = partyHeading.rotatedClockwise()
-    }
-
-    private func turnPartyCounterClockwise() {
-        partyHeading = partyHeading.rotatedCounterClockwise()
     }
     
     private var canPerformAction: Bool {
@@ -81,6 +72,14 @@ final class World {
         default:
             partyPosition = newPosition
         }
+    }
+    
+    private func turnPartyClockwise() {
+        partyHeading = partyHeading.rotatedClockwise()
+    }
+
+    private func turnPartyCounterClockwise() {
+        partyHeading = partyHeading.rotatedCounterClockwise()
     }
 }
 

@@ -45,16 +45,12 @@ final class World {
         switch command {
             
         case .move(direction: let direction):
-            moveParty(direction)
+            performMovement(direction)
         case .turnLeft:
             turnPartyCounterClockwise()
         case .turnRight:
             turnPartyClockwise()
         }
-    }
-    
-    private func moveParty(_ direction: MovementDirection) {
-        performMovement(direction)
     }
 
     func turnPartyClockwise() {

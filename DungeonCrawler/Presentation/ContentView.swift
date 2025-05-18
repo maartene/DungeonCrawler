@@ -48,7 +48,7 @@ struct ContentView: View {
                 
                 HStack {
                     Button("Turn CCW") {
-                        world.turnPartyCounterClockwise()
+                        world.perform(.turnCounterClockwise)
                     }.keyboardShortcut("q", modifiers: [])
                     Button("Forward") {
                         world.perform(.move(direction: .forward))

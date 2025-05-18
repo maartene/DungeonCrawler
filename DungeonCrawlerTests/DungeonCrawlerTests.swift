@@ -98,7 +98,7 @@ import Testing
     @Test("face west when it turns counter clockwise once") func turnCounterClockwise() {
         let world = World(map: Map())
 
-        world.turnPartyCounterClockwise()
+        world.perform(.turnCounterClockwise)
 
         #expect(world.partyHeading == .west)
     }

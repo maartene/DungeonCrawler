@@ -57,7 +57,7 @@ final class World {
         partyHeading = partyHeading.rotatedClockwise()
     }
 
-    func turnPartyCounterClockwise() {
+    private func turnPartyCounterClockwise() {
         guard canPerformAction else {
             return
         }

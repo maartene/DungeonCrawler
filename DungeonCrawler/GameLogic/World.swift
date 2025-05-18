@@ -54,10 +54,6 @@ final class World {
     }
     
     private func moveParty(_ direction: MovementDirection) {
-        guard canPerformAction else {
-            return
-        }
-        
         performMovement(direction)
     }
 

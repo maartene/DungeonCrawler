@@ -54,7 +54,7 @@ struct ContentView: View {
                         world.perform(.move(direction: .forward))
                     }.keyboardShortcut("w", modifiers: [])
                     Button("Turn CW") {
-                        world.turnPartyClockwise()
+                        world.perform(.turnClockwise)
                     }.keyboardShortcut("e", modifiers: [])
                 }
 

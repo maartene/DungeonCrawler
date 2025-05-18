@@ -46,14 +46,14 @@ final class World {
             
         case .move(direction: let direction):
             performMovement(direction)
-        case .turnLeft:
+        case .turnCounterClockwise:
             turnPartyCounterClockwise()
-        case .turnRight:
+        case .turnClockwise:
             turnPartyClockwise()
         }
     }
 
-    func turnPartyClockwise() {
+    private func turnPartyClockwise() {
         guard canPerformAction else {
             return
         }
@@ -100,6 +100,6 @@ enum WorldState {
 
 enum PartyCommand {
     case move(direction: MovementDirection)
-    case turnLeft
-    case turnRight
+    case turnCounterClockwise
+    case turnClockwise
 }

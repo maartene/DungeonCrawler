@@ -42,7 +42,7 @@ import Testing
         ]))
         
         world.perform(.move(direction: .right))
-        world.turnPartyClockwise()
+        world.perform(.turnClockwise)
         
         #expect(world.partyHeading == .north)
     }

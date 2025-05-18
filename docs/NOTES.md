@@ -66,3 +66,8 @@
 - ✅ Implemented a very simple win condition
 - ✅ Added a viewmodel that can notify observers (i.e. the UI) of changes to the world state
 - ✅ Made sure the viewmodel gets updated every frame
+
+## 🍅 Pomodoro 14 - Model for Win condition
+- ✅ Added a model to show the goal of the game
+- ✅ After reaching the goal, you can no longer move around
+- ✅ Refactoring the World to solve DRY vialotion

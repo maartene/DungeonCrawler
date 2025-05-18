@@ -12,7 +12,6 @@ final class World {
 
     private let floors: [Map]
     
-    
     var currentFloor: Map {
         floors[currentFloorIndex]
     }

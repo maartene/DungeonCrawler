@@ -26,13 +26,24 @@ import Testing
     }
     
     @Test("When the party reaches the target, they should no longer be able to move") func dontMoveAfterWin() {
-        var world = World(map: Map([
+        let world = World(map: Map([
             [".","T"]
         ]))
         
         world.moveParty(.right)
         world.moveParty(.left)
         
-        #expect(world.partyPosition == Coordinate(x: 1, y: 0))        
+        #expect(world.partyPosition == Coordinate(x: 1, y: 0))
+    }
+    
+    @Test("When the party reaches the target, they should no longer be able to turn") func dontTurnAfterWin() {
+        let world = World(map: Map([
+            [".","T"]
+        ]))
+        
+        world.moveParty(.right)
+        world.turnPartyClockwise()
+        
+        #expect(world.partyHeading == .north)
     }
 }

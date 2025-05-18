@@ -2,6 +2,7 @@
 
 ## ⚠️ TODO
 - `WorldUpdateSystem` is taking on too many responsibilities: moving party as well as showing maps.
+- `World` contains three times the same check for movement and turning
 - Cleanup initializer for `Map`
 - Stairs up only look good at bottom of map and stairs down only look good at top of map
 

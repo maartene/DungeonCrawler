@@ -36,16 +36,40 @@ final class World {
         self.partyPosition = partyStartPosition
         self.partyHeading = partyStartHeading
     }
-
+    
     func moveParty(_ direction: MovementDirection) {
-        guard state != .win else {
+        guard canPerformAction else {
             return
         }
         
-        let newPosition = partyPosition + direction.toCompassDirection(facing: partyHeading).toCoordinate
+        performMovement(direction)
+    }
 
-        switch currentFloor.tileAt(newPosition) {
+    func turnPartyClockwise() {
+        guard canPerformAction else {
+            return
+        }
         
+        partyHeading = partyHeading.rotatedClockwise()
+    }
+
+    func turnPartyCounterClockwise() {
+        guard canPerformAction else {
+            return
+        }
+        
+        partyHeading = partyHeading.rotatedCounterClockwise()
+    }
+    
+    private var canPerformAction: Bool {
+        state != .win
+    }
+    
+    private func performMovement(_ direction: MovementDirection) {
+        let newPosition = partyPosition + direction.toCompassDirection(facing: partyHeading).toCoordinate
+        
+        switch currentFloor.tileAt(newPosition) {
+            
         case .wall:
             break
         case .stairsUp:
@@ -57,22 +81,6 @@ final class World {
         default:
             partyPosition = newPosition
         }
-    }
-
-    func turnPartyClockwise() {
-        guard state != .win else {
-            return
-        }
-        
-        partyHeading = partyHeading.rotatedClockwise()
-    }
-
-    func turnPartyCounterClockwise() {
-        guard state != .win else {
-            return
-        }
-        
-        partyHeading = partyHeading.rotatedCounterClockwise()
     }
 }
 

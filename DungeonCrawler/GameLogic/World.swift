@@ -38,6 +38,10 @@ final class World {
     }
 
     func moveParty(_ direction: MovementDirection) {
+        guard state != .win else {
+            return
+        }
+        
         let newPosition = partyPosition + direction.toCompassDirection(facing: partyHeading).toCoordinate
 
         switch currentFloor.tileAt(newPosition) {

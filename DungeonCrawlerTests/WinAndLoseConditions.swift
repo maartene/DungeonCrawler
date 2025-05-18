@@ -24,4 +24,15 @@ import Testing
         
         #expect(world.state == .win)
     }
+    
+    @Test("When the party reaches the target, they should no longer be able to move") func dontMoveAfterWin() {
+        var world = World(map: Map([
+            [".","T"]
+        ]))
+        
+        world.moveParty(.right)
+        world.moveParty(.left)
+        
+        #expect(world.partyPosition == Coordinate(x: 1, y: 0))        
+    }
 }

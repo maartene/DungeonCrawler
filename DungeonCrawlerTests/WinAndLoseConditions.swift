@@ -20,7 +20,7 @@ import Testing
             [".","T"]
         ]))
         
-        world.moveParty(.right)
+        world.perform(.move(direction: .right))
         
         #expect(world.state == .win)
     }
@@ -30,8 +30,8 @@ import Testing
             [".","T"]
         ]))
         
-        world.moveParty(.right)
-        world.moveParty(.left)
+        world.perform(.move(direction: .right))
+        world.perform(.move(direction: .left))
         
         #expect(world.partyPosition == Coordinate(x: 1, y: 0))
     }
@@ -41,7 +41,7 @@ import Testing
             [".","T"]
         ]))
         
-        world.moveParty(.right)
+        world.perform(.move(direction: .right))
         world.turnPartyClockwise()
         
         #expect(world.partyHeading == .north)

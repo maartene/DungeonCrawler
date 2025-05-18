@@ -51,7 +51,7 @@ struct ContentView: View {
                         world.turnPartyCounterClockwise()
                     }.keyboardShortcut("q", modifiers: [])
                     Button("Forward") {
-                        world.moveParty(.forward)
+                        world.perform(.move(direction: .forward))
                     }.keyboardShortcut("w", modifiers: [])
                     Button("Turn CW") {
                         world.turnPartyClockwise()
@@ -60,13 +60,13 @@ struct ContentView: View {
 
                 HStack {
                     Button("Left") {
-                        world.moveParty(.left)
+                        world.perform(.move(direction: .left))
                     }.keyboardShortcut("a", modifiers: [])
                     Button("Back") {
-                        world.moveParty(.backwards)
+                        world.perform(.move(direction: .backwards))
                     }.keyboardShortcut("s", modifiers: [])
                     Button("Right") {
-                        world.moveParty(.right)
+                        world.perform(.move(direction: .right))
                     }.keyboardShortcut("d", modifiers: [])
 
                 }

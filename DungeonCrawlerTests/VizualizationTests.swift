@@ -58,7 +58,7 @@ final class MockObserver {
         ]))
         let viewModel = ViewModel(world: world)
         let observer = MockObserver(observing: viewModel)
-        world.moveParty(.right)
+        world.perform(.move(direction: .right))
         
         viewModel.update()
         

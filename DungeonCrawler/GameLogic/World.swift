@@ -37,7 +37,23 @@ final class World {
         self.partyHeading = partyStartHeading
     }
     
-    func moveParty(_ direction: MovementDirection) {
+    func perform(_ command: PartyCommand) {
+        guard canPerformAction else {
+            return
+        }
+        
+        switch command {
+            
+        case .move(direction: let direction):
+            moveParty(direction)
+        case .turnLeft:
+            turnPartyCounterClockwise()
+        case .turnRight:
+            turnPartyClockwise()
+        }
+    }
+    
+    private func moveParty(_ direction: MovementDirection) {
         guard canPerformAction else {
             return
         }
@@ -88,4 +104,10 @@ enum WorldState {
     case undetermined
     case win
     case lose
+}
+
+enum PartyCommand {
+    case move(direction: MovementDirection)
+    case turnLeft
+    case turnRight
 }

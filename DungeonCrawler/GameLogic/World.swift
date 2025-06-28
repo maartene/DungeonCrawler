@@ -11,6 +11,7 @@ final class World {
     private var currentFloorIndex = 0
 
     private let floors: [Map]
+    let partyMembers = PartyMembers()
     
     var currentFloor: Map {
         floors[currentFloorIndex]
@@ -19,6 +20,10 @@ final class World {
     var state: WorldState {
         if currentFloor.tileAt(partyPosition) == .winTarget {
             return .win
+        }
+        
+        if partyMembers.alivePartyMembers.isEmpty {
+            return .lose
         }
         
         return .undetermined

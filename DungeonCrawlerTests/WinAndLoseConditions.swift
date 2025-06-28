@@ -46,4 +46,16 @@ import Testing
         
         #expect(world.partyHeading == .north)
     }
+    
+    @Test("When the party is defeated, the world should be in the 'lose' state") func partyDefeated() {
+        let world = World(map: Map())
+        
+        // defeating the party
+        world.partyMembers[.frontLeft].takeDamage(Int.max)
+        world.partyMembers[.frontRight].takeDamage(Int.max)
+        world.partyMembers[.backLeft].takeDamage(Int.max)
+        world.partyMembers[.backRight].takeDamage(Int.max)
+        
+        #expect(world.state == .lose)
+    }
 }

@@ -58,4 +58,15 @@ import Testing
         
         #expect(world.state == .lose)
     }
+    
+    @Test("When not every partymember is defeated, the world should be in the 'undecided' state") func partyNotDefeatedWhenAPartyMemberIsAlive() {
+        let world = World(map: Map())
+        
+        // defeating the party
+        world.partyMembers[.frontLeft].takeDamage(Int.max)
+        world.partyMembers[.backLeft].takeDamage(Int.max)
+        world.partyMembers[.backRight].takeDamage(Int.max)
+        
+        #expect(world.state == .undetermined)
+    }
 }

@@ -37,15 +37,3 @@ enum PartyPosition {
     case backLeft
     case backRight
 }
-
-final class PartyMember {
-    private var health = 10
-    
-    func takeDamage(_ amount: Int) {
-        health -= amount
-    }
-    
-    var isAlive: Bool {
-        health > 0
-    }
-}

@@ -57,7 +57,7 @@ final class World {
     }
     
     private var canPerformAction: Bool {
-        state != .win
+        state != .win && state != .lose
     }
     
     private func performMovement(_ direction: MovementDirection) {

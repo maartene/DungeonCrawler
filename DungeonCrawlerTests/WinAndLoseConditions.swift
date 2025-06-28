@@ -62,11 +62,24 @@ import Testing
     @Test("When not every partymember is defeated, the world should be in the 'undecided' state") func partyNotDefeatedWhenAPartyMemberIsAlive() {
         let world = World(map: Map())
         
-        // defeating the party
         world.partyMembers[.frontLeft].takeDamage(Int.max)
         world.partyMembers[.backLeft].takeDamage(Int.max)
         world.partyMembers[.backRight].takeDamage(Int.max)
         
         #expect(world.state == .undetermined)
+    }
+    
+    @Test("When the party reaches the target, they should no longer be able to move") func dontMoveAfterLosing() {
+        let world = World(map: Map())
+        
+        // defeating the party
+        world.partyMembers[.frontLeft].takeDamage(Int.max)
+        world.partyMembers[.frontRight].takeDamage(Int.max)
+        world.partyMembers[.backLeft].takeDamage(Int.max)
+        world.partyMembers[.backRight].takeDamage(Int.max)
+        
+        world.perform(.move(direction: .forward))
+        
+        #expect(world.partyPosition == Coordinate(x: 0, y: 0))
     }
 }

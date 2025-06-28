@@ -49,12 +49,7 @@ import Testing
     
     @Test("When the party is defeated, the world should be in the 'lose' state") func partyDefeated() {
         let world = World(map: Map())
-        
-        // defeating the party
-        world.partyMembers[.frontLeft].takeDamage(Int.max)
-        world.partyMembers[.frontRight].takeDamage(Int.max)
-        world.partyMembers[.backLeft].takeDamage(Int.max)
-        world.partyMembers[.backRight].takeDamage(Int.max)
+        defeatParty(in: world)
         
         #expect(world.state == .lose)
     }
@@ -71,15 +66,17 @@ import Testing
     
     @Test("When the party reaches the target, they should no longer be able to move") func dontMoveAfterLosing() {
         let world = World(map: Map())
-        
-        // defeating the party
-        world.partyMembers[.frontLeft].takeDamage(Int.max)
-        world.partyMembers[.frontRight].takeDamage(Int.max)
-        world.partyMembers[.backLeft].takeDamage(Int.max)
-        world.partyMembers[.backRight].takeDamage(Int.max)
+        defeatParty(in: world)
         
         world.perform(.move(direction: .forward))
         
         #expect(world.partyPosition == Coordinate(x: 0, y: 0))
+    }
+    
+    private func defeatParty(in world: World) {
+        world.partyMembers[.frontLeft].takeDamage(Int.max)
+        world.partyMembers[.frontRight].takeDamage(Int.max)
+        world.partyMembers[.backLeft].takeDamage(Int.max)
+        world.partyMembers[.backRight].takeDamage(Int.max)
     }
 }

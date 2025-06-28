@@ -25,6 +25,7 @@ final class ViewModel: ObservableObject {
     
     @objc func update() {
         worldState = world.state
+        self.objectWillChange.send()
     }
 }
 

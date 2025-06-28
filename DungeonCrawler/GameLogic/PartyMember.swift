@@ -6,7 +6,7 @@
 //
 
 final class PartyMember {
-    private var health = 10
+    private(set) var health = 10
     
     func takeDamage(_ amount: Int) {
         health -= amount

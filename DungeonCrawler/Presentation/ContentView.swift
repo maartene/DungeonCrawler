@@ -40,6 +40,17 @@ struct ContentView: View {
         ZStack {
             GameView(world: world)
             VStack {
+                HStack {
+                    Spacer()
+                    PartyMembersView(partyMembers: world.partyMembers)
+                }
+                Button("DAMAGE") {
+                    world.partyMembers[.frontLeft].takeDamage(1)
+                }
+                .foregroundStyle(.white)
+                Spacer()
+            }
+            VStack {
                 VStack {
                     Text("State: \(viewModel.worldState)")
                 }

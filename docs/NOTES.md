@@ -71,3 +71,7 @@
 - ✅ Added a model to show the goal of the game
 - ✅ After reaching the goal, you can no longer move around
 - ✅ Refactoring the World to solve DRY vialotion
+
+## 🍅 Pomodoro 15 - Lose condition
+- ✅ Lose condition after all party members are defeated
+- ✅ Show (static) HP on game screen

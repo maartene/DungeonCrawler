@@ -75,3 +75,6 @@
 ## 🍅 Pomodoro 15 - Lose condition
 - ✅ Lose condition after all party members are defeated
 - ✅ Show (static) HP on game screen
+
+## 🍅 Pomodoro 16
+- ⚠️ Update HP on game screen

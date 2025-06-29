@@ -42,17 +42,22 @@ import Combine
 
 final class MockObserver {
     var state = WorldState.undetermined
+    var partyStats = PartyStats(partyMembers: PartyMembers())
     var cancelables = Set<AnyCancellable>()
     
     init(observing viewModel: ViewModel) {
         viewModel.$worldState.sink { [weak self] in
             self?.state = $0
         }.store(in: &cancelables)
+        
+        viewModel.$partyStats.sink { [weak self] in
+            self?.partyStats = $0
+        }.store(in: &cancelables)
     }
 }
 
 @Suite("ViewModel should") struct ViewModelTests {
-    @Test("When the state of the world changes and the ViewModel is updates, the ViewModel notifies its observers") func viewModelNotifiesObserversOfWorldStateChanges() {
+    @Test("When the state of the world changes and the ViewModel is updated, the ViewModel notifies its observers") func viewModelNotifiesObserversOfWorldStateChanges() {
         let world = World(map: Map([
             [".","T"]
         ]))
@@ -64,5 +69,16 @@ final class MockObserver {
         
         #expect(observer.state == .win)
         
+    }
+    
+    @Test("When the hitpoints for a party member change and the ViewModel is updated, then the ViewModel notifies its observers") func viewModelNotifiesObserversOfHitpointChanges() {
+        let world = World(map: Map())
+        let viewModel = ViewModel(world: world)
+        let observer = MockObserver(observing: viewModel)
+        
+        world.partyMembers[.frontRight].takeDamage(2)
+        viewModel.update()
+        
+        #expect(observer.partyStats[.frontRight].currentHP == world.partyMembers[.frontRight].health)
     }
 }

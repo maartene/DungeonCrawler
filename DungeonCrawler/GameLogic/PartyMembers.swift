@@ -29,6 +29,10 @@ final class PartyMembers {
     var alivePartyMembers: [PartyMember] {
         members.filter { $0.isAlive }
     }
+    
+    var allPartyMembers: [PartyMember] {
+        members
+    }
 }
 
 enum PartyPosition {

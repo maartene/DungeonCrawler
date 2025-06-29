@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct PartyMembersView: View {
-    let partyMembers: PartyMembers
+    let partyStats: PartyStats
     
     var body: some View {
         VStack {
             HStack {
-                Text("HP: \(partyMembers[.frontLeft].health)")
+                Text("HP: \(partyStats[.frontLeft].currentHP)")
                     .padding()
-                Text("HP: \(partyMembers[.frontRight].health)")
+                Text("HP: \(partyStats[.frontRight].currentHP)")
                     .padding()
             }
             HStack {
-                Text("HP: \(partyMembers[.backLeft].health)")
+                Text("HP: \(partyStats[.backLeft].currentHP)")
                     .padding()
-                Text("HP: \(partyMembers[.backRight].health)")
+                Text("HP: \(partyStats[.backRight].currentHP)")
                     .padding()
             }
         }
@@ -33,5 +33,5 @@ struct PartyMembersView: View {
 }
 
 #Preview {
-    PartyMembersView(partyMembers: PartyMembers())
+    PartyMembersView(partyStats: PartyStats(partyMembers: PartyMembers()))
 }

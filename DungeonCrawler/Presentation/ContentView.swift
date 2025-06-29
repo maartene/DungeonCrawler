@@ -42,7 +42,7 @@ struct ContentView: View {
             VStack {
                 HStack {
                     Spacer()
-                    PartyMembersView(partyMembers: world.partyMembers)
+                    PartyMembersView(partyStats: viewModel.partyStats)
                 }
                 Button("DAMAGE") {
                     world.partyMembers[.frontLeft].takeDamage(1)

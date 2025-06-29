@@ -57,12 +57,17 @@ final class MockObserver {
 }
 
 final class ObserverSpy {
-    var updateCounter = 0
+    var updatePlayerStatsCounter = 0
+    var updateStateCounter = 0
     var cancelables = Set<AnyCancellable>()
     
     init(observing viewModel: ViewModel) {
+        viewModel.$worldState.sink { [weak self] _ in
+            self?.updateStateCounter += 1
+        }.store(in: &cancelables)
+        
         viewModel.$partyStats.sink { [weak self] _ in
-            self?.updateCounter += 1
+            self?.updatePlayerStatsCounter += 1
         }.store(in: &cancelables)
     }
 }
@@ -100,6 +105,16 @@ final class ObserverSpy {
         
         viewModel.update()
         
-        #expect(spy.updateCounter == 1)
+        #expect(spy.updatePlayerStatsCounter == 1)
+    }
+    
+    @Test("When the state for the world doesnt change and the ViewModel is updated, then the ViewModel shouldn't notify its observers") func viewModelShouldntNotifyObserversWhenNoStateChanges() {
+        let world = World(map: Map())
+        let viewModel = ViewModel(world: world)
+        let spy = ObserverSpy(observing: viewModel)
+        
+        viewModel.update()
+        
+        #expect(spy.updateStateCounter == 1)
     }
 }

@@ -26,7 +26,10 @@ final class ViewModel: ObservableObject {
     }
     
     @objc func update() {
-        worldState = world.state
+        if worldState != world.state {
+            worldState = world.state
+        }
+        
         let updatedStats = PartyStats(partyMembers: world.partyMembers)
         if updatedStats != partyStats {
             partyStats = updatedStats

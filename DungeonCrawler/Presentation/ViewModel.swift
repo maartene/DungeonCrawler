@@ -27,8 +27,10 @@ final class ViewModel: ObservableObject {
     
     @objc func update() {
         worldState = world.state
-        partyStats = PartyStats(partyMembers: world.partyMembers)
-        self.objectWillChange.send()
+        let updatedStats = PartyStats(partyMembers: world.partyMembers)
+        if updatedStats != partyStats {
+            partyStats = updatedStats
+        }
     }
 }
 
@@ -83,3 +85,6 @@ struct PartyMemberStats {
         self.currentHP = partyMember.currentHP
     }
 }
+
+extension PartyStats: Equatable { }
+extension PartyMemberStats: Equatable { }

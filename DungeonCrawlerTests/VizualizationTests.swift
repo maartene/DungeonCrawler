@@ -56,6 +56,17 @@ final class MockObserver {
     }
 }
 
+final class ObserverSpy {
+    var updateCounter = 0
+    var cancelables = Set<AnyCancellable>()
+    
+    init(observing viewModel: ViewModel) {
+        viewModel.$partyStats.sink { [weak self] _ in
+            self?.updateCounter += 1
+        }.store(in: &cancelables)
+    }
+}
+
 @Suite("ViewModel should") struct ViewModelTests {
     @Test("When the state of the world changes and the ViewModel is updated, the ViewModel notifies its observers") func viewModelNotifiesObserversOfWorldStateChanges() {
         let world = World(map: Map([
@@ -80,5 +91,15 @@ final class MockObserver {
         viewModel.update()
         
         #expect(observer.partyStats[.frontRight].currentHP == world.partyMembers[.frontRight].currentHP)
+    }
+    
+    @Test("When the hitpoints for a party member don't change and the ViewModel is updated, then the ViewModel shouldn't notify its observers") func viewModelShouldntNotifyObserversWhenNoHitpointChange() {
+        let world = World(map: Map())
+        let viewModel = ViewModel(world: world)
+        let spy = ObserverSpy(observing: viewModel)
+        
+        viewModel.update()
+        
+        #expect(spy.updateCounter == 1)
     }
 }

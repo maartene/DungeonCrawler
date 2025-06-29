@@ -80,6 +80,6 @@ struct PartyMemberStats {
     let currentHP: Int
     
     init(partyMember: PartyMember) {
-        self.currentHP = partyMember.health
+        self.currentHP = partyMember.currentHP
     }
 }

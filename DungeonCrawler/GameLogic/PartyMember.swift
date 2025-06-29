@@ -6,13 +6,13 @@
 //
 
 final class PartyMember {
-    private(set) var health = 10
+    private(set) var currentHP = 10
     
     func takeDamage(_ amount: Int) {
-        health -= amount
+        currentHP -= amount
     }
     
     var isAlive: Bool {
-        health > 0
+        currentHP > 0
     }
 }

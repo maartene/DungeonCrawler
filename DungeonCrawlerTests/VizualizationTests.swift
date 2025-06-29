@@ -79,6 +79,6 @@ final class MockObserver {
         world.partyMembers[.frontRight].takeDamage(2)
         viewModel.update()
         
-        #expect(observer.partyStats[.frontRight].currentHP == world.partyMembers[.frontRight].health)
+        #expect(observer.partyStats[.frontRight].currentHP == world.partyMembers[.frontRight].currentHP)
     }
 }

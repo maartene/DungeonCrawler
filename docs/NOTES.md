@@ -79,3 +79,7 @@
 ## 🍅 Pomodoro 16 - Updating HP on game screen
 - ✅ Update HP on game screen
 - ✅ Only send updates when values change
+
+## 🍅 Pomodoro 17 - Updating HP on game screen
+- ✅ Show an enemy sprite on screen
+- ✅ Have enemy damage the party

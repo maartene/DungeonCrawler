@@ -76,6 +76,9 @@ class WorldUpdateSystem: System {
                 }
             }
         }
+        
+        // FIXME: should not go here
+        renderEnemy(mapAnchor!)
     }
 
     private func createCube(worldPosition: SIMD3<Float>) -> AnchorEntity {
@@ -96,6 +99,19 @@ class WorldUpdateSystem: System {
         anchor.addChild(entity.clone(recursive: true))
 
         return anchor
+    }
+    
+    private func renderEnemy(_ anchor: AnchorEntity) {
+        let textureResource = try! TextureResource.load(named: "Skeleton_Mage_Idle_0deg_0")
+        let texture = MaterialParameters.Texture(textureResource)
+        var spriteMaterial = UnlitMaterial()
+        spriteMaterial.color = .init(tint: .white, texture: texture)
+        spriteMaterial.blending = .transparent(opacity: 1.0)
+        let plane = Entity(components: [ModelComponent(mesh: .generatePlane(width: 1, depth: 1), materials: [spriteMaterial])])
+        plane.transform.rotation = .init(angle: Float.pi / 2, axis: [1,0,0])
+        let spriteAnchor = AnchorEntity(world: [1, -0.2, -3])
+        spriteAnchor.addChild(plane)
+        anchor.addChild(spriteAnchor)
     }
 
     private func loadEntity(model: String) -> Entity {

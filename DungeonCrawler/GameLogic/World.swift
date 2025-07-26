@@ -5,11 +5,14 @@
 //  Created by Maarten Engels on 01/03/2025.
 //
 
+import Foundation
+
 final class World {
     private(set) var partyPosition: Coordinate
     private(set) var partyHeading: CompassDirection
     private var currentFloorIndex = 0
-
+    private var enemies: [Enemy] = []
+    
     private let floors: [Map]
     let partyMembers = PartyMembers()
     
@@ -39,6 +42,14 @@ final class World {
         self.floors = floors
         self.partyPosition = partyStartPosition
         self.partyHeading = partyStartHeading
+    }
+    
+    func addEnemy(_ position: Coordinate) {
+        enemies.append(Enemy())
+    }
+    
+    func update(at time: Date) {
+        partyMembers[.frontLeft].takeDamage(1)
     }
     
     func perform(_ command: PartyCommand) {

@@ -6,5 +6,9 @@
 //
 
 final class Enemy {
+    let position: Coordinate
     
+    init(position: Coordinate) {
+        self.position = position
+    }
 }

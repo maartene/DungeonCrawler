@@ -45,11 +45,15 @@ final class World {
     }
     
     func addEnemy(_ position: Coordinate) {
-        enemies.append(Enemy())
+        enemies.append(Enemy(position: position))
     }
     
     func update(at time: Date) {
-        partyMembers[.frontLeft].takeDamage(1)
+        for enemy in enemies {
+            if enemy.position.manhattanDistanceTo(partyPosition) <= 1 {
+                partyMembers[.frontLeft].takeDamage(1)
+            }
+        }
     }
     
     func perform(_ command: PartyCommand) {

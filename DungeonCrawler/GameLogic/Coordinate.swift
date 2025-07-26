@@ -20,3 +20,9 @@ struct Coordinate {
 
 extension Coordinate: Equatable { }
 extension Coordinate: Hashable { }
+
+extension Coordinate {
+    func manhattanDistanceTo(_ other: Coordinate) -> Int {
+        abs(x - other.x) + abs(y - other.y)
+    }
+}

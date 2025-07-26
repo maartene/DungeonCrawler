@@ -30,5 +30,17 @@ import Testing
             
             #expect(world.partyMembers[.frontLeft].currentHP == originalHP)
         }
+        
+        @Test("given the party is next to the enemy and cooldown is still in effect, the party does not take damage") func shouldNotTakeDamage_duringCooldown() {
+            let world = World(floors: [Map()])
+            world.addEnemy(Coordinate(x: 0, y: 1))
+            world.update(at: Date())
+            
+            let originalHP = world.partyMembers[.frontLeft].currentHP
+
+            world.update(at: Date().addingTimeInterval(0.5))
+            
+            #expect(world.partyMembers[.frontLeft].currentHP == originalHP)
+        }
     }
 }

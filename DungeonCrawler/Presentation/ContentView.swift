@@ -85,6 +85,8 @@ struct ContentView: View {
 
                 }
             }
+        }.onAppear {
+            world.addEnemy(Coordinate(x: 1, y: 3))
         }
     }
 }

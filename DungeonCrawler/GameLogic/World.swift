@@ -51,7 +51,7 @@ final class World {
     func update(at time: Date) {
         for enemy in enemies {
             if enemy.position.manhattanDistanceTo(partyPosition) <= 1 {
-                partyMembers[.frontLeft].takeDamage(1)
+                enemy.attack(partyMembers[.frontLeft], at: time)
             }
         }
     }

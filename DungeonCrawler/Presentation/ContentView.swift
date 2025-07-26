@@ -44,13 +44,6 @@ struct ContentView: View {
                     Spacer()
                     PartyMembersView(partyStats: viewModel.partyStats)
                 }
-                Button("DAMAGE") {
-                    world.partyMembers[.frontLeft].takeDamage(1)
-                    world.partyMembers[.frontRight].takeDamage(1)
-                    world.partyMembers[.backLeft].takeDamage(1)
-                    world.partyMembers[.backRight].takeDamage(1)
-                }
-                .foregroundStyle(.white)
                 Spacer()
             }
             VStack {

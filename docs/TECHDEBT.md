@@ -2,10 +2,14 @@
 
 ## ⚠️ TODO
 - Make a better initializer for `World` that allows us to pass in a map in a human readable form.
-- `WorldUpdateSystem` is taking on too many responsibilities: moving party as well as showing maps.
 - Feature envy on `Enemy` from `World` in `update(at:)`
+- Enemies are not bound to a floor
 
 - Stairs up only look good at bottom of map and stairs down only look good at top of map
+
+## DOING
+- `WorldUpdateSystem` is taking on too many responsibilities: moving party as well as showing maps.
+
 
 ## ✅ DONE
 

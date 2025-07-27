@@ -5,12 +5,18 @@
 //  Created by Maarten Engels on 01/03/2025.
 //
 
+import Foundation
+
 struct Coordinate {
     var x: Int
     var y: Int
 
     static func +(lhs: Coordinate, rhs: Coordinate) -> Coordinate {
         Coordinate(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
+    }
+    
+    static func -(lhs: Coordinate, rhs: Coordinate) -> Coordinate {
+        Coordinate(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
     }
 
     static func +=(lhs: inout Coordinate, rhs: Coordinate) {
@@ -24,5 +30,9 @@ extension Coordinate: Hashable { }
 extension Coordinate {
     func manhattanDistanceTo(_ other: Coordinate) -> Int {
         abs(x - other.x) + abs(y - other.y)
+    }
+    
+    var magnitude: Double {
+        sqrt(Double((x * x) + (y * y)))
     }
 }

@@ -20,6 +20,10 @@ final class World {
         floors[currentFloorIndex]
     }
     
+    var enemiesOnCurrentFloor: [Enemy] {
+        enemies
+    }
+    
     var state: WorldState {
         if currentFloor.tileAt(partyPosition) == .winTarget {
             return .win

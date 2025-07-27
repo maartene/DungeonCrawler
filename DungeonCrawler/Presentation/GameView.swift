@@ -17,6 +17,8 @@ struct GameView: NSViewRepresentable {
         setupView(view)
 
         WorldUpdateSystem.registerSystem()
+        MapUpdateSystem.registerSystem()
+        EnemyUpdateSystem.registerSystem()
 
         return view
 

@@ -41,17 +41,10 @@ class EnemyUpdateSystem: System {
     
     private func renderEnemy(_ enemy: Enemy) {
         if let sprite = enemySpriteMap[ObjectIdentifier(enemy)] {
-            // don't do anything yet
-            // we can do updates and stuff here
             sprite.transform.rotation = .init(angle: world.partyHeading.toFloatQuaternion.angle, axis: [0,1,0])
-            
+            sprite.children[0].components[ModelComponent.self] = makeModelComponentFor(enemy)
         } else {
-            let textureResource = try! TextureResource.load(named: "Skeleton_Mage_Idle_0deg_0")
-            let texture = MaterialParameters.Texture(textureResource)
-            var spriteMaterial = UnlitMaterial()
-            spriteMaterial.color = .init(tint: .white, texture: texture)
-            spriteMaterial.blending = .transparent(opacity: 1.0)
-            let plane = Entity(components: [ModelComponent(mesh: .generatePlane(width: 1, depth: 1), materials: [spriteMaterial])])
+            let plane = Entity(components: [makeModelComponentFor(enemy)])
             plane.transform.rotation = .init(angle: Float.pi / 2, axis: [1,0,0])
             let spriteAnchor = AnchorEntity(world: [1, -0.2, -3])
             spriteAnchor.addChild(plane)
@@ -59,5 +52,15 @@ class EnemyUpdateSystem: System {
             
             enemySpriteMap[ObjectIdentifier(enemy)] = spriteAnchor
         }
+    }
+    
+    private func makeModelComponentFor(_ enemy: Enemy) -> ModelComponent {
+        let textureResource = try! TextureResource.load(named: "Skeleton_Mage_Idle_0deg_0")
+        let texture = MaterialParameters.Texture(textureResource)
+        var spriteMaterial = UnlitMaterial()
+        let light = 1.0 / (world.partyPosition - enemy.position).magnitude
+        spriteMaterial.color = .init(tint: .init(white: light, alpha: 1.0), texture: texture)
+        spriteMaterial.blending = .transparent(opacity: 1.0)
+        return ModelComponent(mesh: .generatePlane(width: 1, depth: 1), materials: [spriteMaterial])
     }
 }

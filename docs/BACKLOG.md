@@ -13,8 +13,9 @@
 - Buttons on screen as well as keyboard controls ✅
 
 ## Win and Lose conditions
+
 - Win condition: reach a specific tile ✅
-- Lose condition: party is defeated
+- Lose condition: party is defeated ✅
 
 ## Reminders
 

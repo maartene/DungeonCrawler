@@ -124,14 +124,7 @@ func makeWorld(_ floorStrings: [String]) -> World {
     var floors = [Map]()
     
     for floorString in floorStrings {
-        let lines = floorString.split(separator: "\n")
-            .map { String($0) }
-        
-        let characters: [[Character]] = lines.map { line in
-            line.map { stringElement in
-                stringElement
-            }
-        }
+        let characters = toCharacterMatrix(floorString)
         
         // lets try and find a starting position
         for y in 0 ..< characters.count {
@@ -162,4 +155,17 @@ func makeWorld(_ floorStrings: [String]) -> World {
     }
     
     return world
+    
+    func toCharacterMatrix(_ string: String) -> [[Character]] {
+        let lines = string.split(separator: "\n")
+            .map { String($0) }
+        
+        let characters: [[Character]] = lines.map { line in
+            line.map { stringElement in
+                stringElement
+            }
+        }
+        
+        return characters
+    }
 }

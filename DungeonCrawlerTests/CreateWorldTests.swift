@@ -9,7 +9,7 @@ import Testing
 @testable import DungeonCrawler
 
 @Suite("makeWorld should") struct MakeWorldTests {
-    @Test("create a map with a single floor based on a multiline string") func singleFloorTest() throws {
+    @Test("create a world with a single floor based on a multiline string") func singleFloorTest() throws {
         let world = makeWorld([
             """
             ######
@@ -35,5 +35,22 @@ import Testing
         let enemy = try #require(world.enemiesOnCurrentFloor.first)
         #expect(enemy.position == Coordinate(x: 3, y: 3))
         
+    }
+    
+    @Test("create a world with two floors based on a multiline strings") func multipleFloorTest() {
+        let world = makeWorld([
+            """
+            .<
+            """,
+            """
+            ..#
+            ###
+            """
+        ])
+        
+        world.perform(.move(direction: .right))
+        
+        #expect(world.currentFloor.maxX == 2)
+        #expect(world.currentFloor.maxY == 1)
     }
 }

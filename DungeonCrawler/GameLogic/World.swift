@@ -118,42 +118,44 @@ enum PartyCommand {
     case turnClockwise
 }
 
-func makeWorld(_ floors: [String]) -> World {
-    let floorString = floors[0]
-    
-    let lines = floorString.split(separator: "\n")
-        .map { String($0) }
-    
-    let characters: [[Character]] = lines.map { line in
-        line.map { stringElement in
-            stringElement
-        }
-    }
-    
-    // lets try and find a starting position
-    var startingPosition = Coordinate(x: 0, y: 0)
-    for y in 0 ..< characters.count {
-        for x in 0 ..< characters[y].count {
-            if characters[y][x] == "S"
-            {
-                startingPosition = Coordinate(x: x, y: y)
-            }
-         }
-    }
-    
+func makeWorld(_ floorStrings: [String]) -> World {
     var enemies = [Coordinate]()
+    var startingPosition = Coordinate(x: 0, y: 0)
+    var floors = [Map]()
     
-    for y in 0 ..< characters.count {
-        for x in 0 ..< characters[y].count {
-            if characters[y][x] == "e"
-            {
-                enemies.append(Coordinate(x: x, y: y))
+    for floorString in floorStrings {
+        let lines = floorString.split(separator: "\n")
+            .map { String($0) }
+        
+        let characters: [[Character]] = lines.map { line in
+            line.map { stringElement in
+                stringElement
             }
-         }
+        }
+        
+        // lets try and find a starting position
+        for y in 0 ..< characters.count {
+            for x in 0 ..< characters[y].count {
+                if characters[y][x] == "S"
+                {
+                    startingPosition = Coordinate(x: x, y: y)
+                }
+             }
+        }
+        
+        for y in 0 ..< characters.count {
+            for x in 0 ..< characters[y].count {
+                if characters[y][x] == "e"
+                {
+                    enemies.append(Coordinate(x: x, y: y))
+                }
+             }
+        }
+        
+        floors.append(Map(characters))
     }
     
-    
-    let world = World(floors: [Map(characters)], partyStartPosition: startingPosition)
+    let world = World(floors: floors, partyStartPosition: startingPosition)
     
     for enemy in enemies {
         world.addEnemy(enemy)

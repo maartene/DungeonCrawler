@@ -117,3 +117,47 @@ enum PartyCommand {
     case turnCounterClockwise
     case turnClockwise
 }
+
+func makeWorld(_ floors: [String]) -> World {
+    let floorString = floors[0]
+    
+    let lines = floorString.split(separator: "\n")
+        .map { String($0) }
+    
+    let characters: [[Character]] = lines.map { line in
+        line.map { stringElement in
+            stringElement
+        }
+    }
+    
+    // lets try and find a starting position
+    var startingPosition = Coordinate(x: 0, y: 0)
+    for y in 0 ..< characters.count {
+        for x in 0 ..< characters[y].count {
+            if characters[y][x] == "S"
+            {
+                startingPosition = Coordinate(x: x, y: y)
+            }
+         }
+    }
+    
+    var enemies = [Coordinate]()
+    
+    for y in 0 ..< characters.count {
+        for x in 0 ..< characters[y].count {
+            if characters[y][x] == "e"
+            {
+                enemies.append(Coordinate(x: x, y: y))
+            }
+         }
+    }
+    
+    
+    let world = World(floors: [Map(characters)], partyStartPosition: startingPosition)
+    
+    for enemy in enemies {
+        world.addEnemy(enemy)
+    }
+    
+    return world
+}

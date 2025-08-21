@@ -161,22 +161,15 @@ func makeWorld(_ floorStrings: [String]) -> World {
         
         for y in 0 ..< characterMatrix.count {
             for x in 0 ..< characterMatrix[y].count {
-                if characterMatrix[y][x] == "S"
-                {
-                    startingPosition = Coordinate(x: x, y: y)
+                switch characterMatrix[y][x] {
+                case "e": enemies.append(Coordinate(x: x, y: y))
+                case "S": startingPosition = Coordinate(x: x, y: y)
+                default:
+                    break
                 }
              }
         }
-        
-        for y in 0 ..< characterMatrix.count {
-            for x in 0 ..< characterMatrix[y].count {
-                if characterMatrix[y][x] == "e"
-                {
-                    enemies.append(Coordinate(x: x, y: y))
-                }
-             }
-        }
-        
+                
         return (startingPosition, enemies)
     }
 }

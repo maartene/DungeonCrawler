@@ -106,3 +106,9 @@
 - ✅ Refactor `WorldUpdateSystem` to smaller parts
 - ✅ Add billboarding to enemy sprite
 - ✅ Add lighting to enemy sprite
+
+## 🍅 Pomodoro 19 - Better world initializer
+
+- ✅ Create a `makeWorld` factory method
+- ✅ Refactor it
+- ✅ Use it in the game

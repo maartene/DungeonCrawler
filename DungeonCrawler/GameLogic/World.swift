@@ -125,25 +125,10 @@ func makeWorld(_ floorStrings: [String]) -> World {
     
     for floorString in floorStrings {
         let characters = toCharacterMatrix(floorString)
+        let startingAndEnemyPositions = findStartingAndEnemyPositions(characters)
         
-        // lets try and find a starting position
-        for y in 0 ..< characters.count {
-            for x in 0 ..< characters[y].count {
-                if characters[y][x] == "S"
-                {
-                    startingPosition = Coordinate(x: x, y: y)
-                }
-             }
-        }
-        
-        for y in 0 ..< characters.count {
-            for x in 0 ..< characters[y].count {
-                if characters[y][x] == "e"
-                {
-                    enemies.append(Coordinate(x: x, y: y))
-                }
-             }
-        }
+        startingPosition = startingAndEnemyPositions.startingPosition ?? startingPosition
+        enemies.append(contentsOf: startingAndEnemyPositions.enemies)
         
         floors.append(Map(characters))
     }
@@ -167,5 +152,31 @@ func makeWorld(_ floorStrings: [String]) -> World {
         }
         
         return characters
+    }
+    
+    func findStartingAndEnemyPositions(_ characterMatrix: [[Character]]) -> (startingPosition: Coordinate?, enemies: [Coordinate]) {
+        // lets try and find a starting position
+        var enemies = [Coordinate]()
+        var startingPosition: Coordinate?
+        
+        for y in 0 ..< characterMatrix.count {
+            for x in 0 ..< characterMatrix[y].count {
+                if characterMatrix[y][x] == "S"
+                {
+                    startingPosition = Coordinate(x: x, y: y)
+                }
+             }
+        }
+        
+        for y in 0 ..< characterMatrix.count {
+            for x in 0 ..< characterMatrix[y].count {
+                if characterMatrix[y][x] == "e"
+                {
+                    enemies.append(Coordinate(x: x, y: y))
+                }
+             }
+        }
+        
+        return (startingPosition, enemies)
     }
 }

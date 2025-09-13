@@ -1,7 +1,6 @@
 # Tech Debt
 
 ## ⚠️ TODO
-- Make a better initializer for `World` that allows us to pass in a map in a human readable form.
 - Feature envy on `Enemy` from `World` in `update(at:)`
 - Enemies are not bound to a floor
 
@@ -23,3 +22,4 @@
 - Inspecting the map for features (`hasWall` and `hasStairsUp`, ...)
 - `World` contains three times the same check for movement and turning
 - `WorldUpdateSystem` is taking on too many responsibilities: moving party as well as showing maps.
+- Make a better initializer for `World` that allows us to pass in a map in a human readable form.

@@ -9,6 +9,7 @@ import Foundation
 
 final class Enemy {
     let position: Coordinate
+    let heading: CompassDirection = .east
     private var cooldownExpires = Date()
     static let cooldown: TimeInterval = 1
     

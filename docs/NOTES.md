@@ -112,3 +112,8 @@
 - ✅ Create a `makeWorld` factory method
 - ✅ Refactor it
 - ✅ Use it in the game
+
+## 🍅 Pomodoro 19 - Sprite swapping
+
+- ✅ Swap sprites based on player and enemy facing
+- ✅ Fix ❌ where sprite positioning was hard coded
